@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #ffffff;
+  --color-ink: #0a0a0a;
+  --color-cream: #f5f1e8;
+  --color-airmail-red: #d83a3a;
+  --color-airmail-blue: #1d3557;
+  --color-sun: #f5c842;
+  --color-mandala: #1a5f7a;
+  --color-muted: #6b6b6b;
+  --color-rule: #d4d4d4;
+
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-serif), ui-serif, Georgia, serif;
+  --font-script: var(--font-script), cursive;
+  --font-script-hero: var(--font-script-hero), cursive;
+  --font-thai-display: var(--font-thai-display), sans-serif;
+  --font-thai: var(--font-thai), sans-serif;
+}
+
+:root {
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Airmail diagonal stripe — used as section dividers */
+.airmail-stripe {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--color-airmail-red) 0,
+    var(--color-airmail-red) 12px,
+    var(--color-paper) 12px,
+    var(--color-paper) 24px,
+    var(--color-airmail-blue) 24px,
+    var(--color-airmail-blue) 36px,
+    var(--color-paper) 36px,
+    var(--color-paper) 48px
+  );
+  height: 12px;
+}
+
+/* Music staff — 5 horizontal lines paired with script text */
+.music-staff {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 6px,
+    var(--color-ink) 6px,
+    var(--color-ink) 7px
+  );
+  background-size: 100% 7px;
+  background-repeat: repeat-y;
+}
+
+/* Headlines that bleed slightly outside their column for editorial drama */
+.bleed-left {
+  margin-left: calc(-1 * var(--bleed, 4vw));
+}
+.bleed-right {
+  margin-right: calc(-1 * var(--bleed, 4vw));
+}
