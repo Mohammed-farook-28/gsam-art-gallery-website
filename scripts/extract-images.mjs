@@ -1,91 +1,63 @@
-// Extract individual photo regions from the flattened Canva page exports.
-// Coordinates are picked from the 2732x5578 page1, 2732xN page2-5 exports.
-// Output to public/canva-extracts so they can be referenced from pages.
+// Extract clean photo regions from the flattened Canva page exports.
+// Goal: each crop excludes baked-in headlines so they don't visually
+// duplicate the HTML text on the rendered site.
+//
+// EXCEPTION: certain hero images keep baked-in titles because the title is
+// part of the hero billboard composition (e.g. "G.Sam ART GALLERY" forest
+// hero, "Travel + Art Experience" mountains hero, "ไทยแลนด์" Thailand
+// sunset). Those pages skip rendering duplicate HTML overlay text.
 import sharp from "sharp";
 import { mkdir } from "node:fs/promises";
-import { dirname, resolve } from "node:path";
+import { resolve } from "node:path";
 
 const OUT_DIR = resolve(process.cwd(), "public/canva-extracts");
 await mkdir(OUT_DIR, { recursive: true });
-
 const REF = (n) => resolve(process.cwd(), `assets/canva-reference/page${n}.png`);
 
-/** Extract a region. coords are {top, left, width, height} in source pixels. */
-async function crop(sourcePage, region, outName, opts = {}) {
+async function crop(sourcePage, region, outName) {
   const out = resolve(OUT_DIR, outName);
-  let pipeline = sharp(REF(sourcePage)).extract(region);
-  if (opts.resize) pipeline = pipeline.resize(opts.resize);
-  if (opts.format === "png") {
-    await pipeline.png({ compressionLevel: 9 }).toFile(out);
-  } else {
-    await pipeline.jpeg({ quality: 86, mozjpeg: true }).toFile(out);
-  }
+  await sharp(REF(sourcePage))
+    .extract(region)
+    .jpeg({ quality: 86, mozjpeg: true })
+    .toFile(out);
   console.log("→", outName);
 }
 
-// PAGE 1 (2732 × 5578)
-//   Top hero (forest + G.Sam + ART GALLERY + nav): full-width, top 1280px
+// PAGE 1 — Home (2732 × 5578)
 await crop(1, { top: 0, left: 0, width: 2732, height: 1280 }, "hero-forest.jpg");
-
-//   "Why?" circle photo (mirrored tree on water): roughly centered top-right
-//   in the intro section around y=1450..2050, x=2000..2600
-await crop(1, { top: 1430, left: 1980, width: 640, height: 640 }, "why-circle.jpg");
-
-//   Bottom ART GALLERY temple panel: from ~y=4500 to bottom
+await crop(1, { top: 1430, left: 2030, width: 540, height: 540 }, "why-circle.jpg");
 await crop(1, { top: 4500, left: 0, width: 2732, height: 1078 }, "temple-art-gallery.jpg");
 
-// PAGE 2 (Store) — full export for reference; specific crops:
-const page2 = sharp(REF(2));
-const meta2 = await page2.metadata();
-console.log("page2 dims:", meta2.width, meta2.height);
+// PAGE 2 — Store (2732 × 6144)
+//   Stream + 2 postcards (skips top "Store" + right-side "Every art has a Story")
+await crop(2, { top: 410, left: 0, width: 1900, height: 990 }, "store-stream-postcards.jpg");
+//   3-postcard Spotlight strip — pushed down past the headline
+await crop(2, { top: 1980, left: 0, width: 2732, height: 600 }, "spotlight-postcards.jpg");
+//   Mr. Krishnamoorthy portrait — tight crop just on his head/shoulders
+await crop(2, { top: 3320, left: 360, width: 540, height: 540 }, "krishnamoorthy-portrait.jpg");
+//   Sample postcard letter (envelope with "To" lines)
+await crop(2, { top: 3380, left: 1100, width: 1100, height: 760 }, "postcard-letter-sample.jpg");
+//   Postcard with yellow sun + Zenitsu letter sample. Crop just the back-of-postcard
+//   view with stamp + letter text on left, the temple-with-sun postcard on right.
+await crop(2, { top: 5000, left: 900, width: 1750, height: 800 }, "post-postcard-sun.jpg");
 
-//   "Every art has a Story" stream/postcard wide image (top hero of Store):
-//   Crop the top ~1100px which contains the wide stream photo + postcards.
-await crop(2, { top: 240, left: 0, width: 2732, height: 1100 }, "store-stream-postcards.jpg");
+// PAGE 3 — People + Career (2732 × 4608)
+//   Three-image artist strip — push past the subtitle line
+await crop(3, { top: 460, left: 40, width: 2680, height: 780 }, "everyone-is-an-artist.jpg");
+//   "your story" postcard mockup — skip airmail stripe at top, paragraph on left
+await crop(3, { top: 2200, left: 1100, width: 1500, height: 580 }, "your-story-postcards.jpg");
+//   Career mandala circle
+await crop(3, { top: 3580, left: 950, width: 850, height: 850 }, "career-mandala.jpg");
 
-//   Spotlight 3-postcard strip (~y 1450..2200)
-await crop(2, { top: 1450, left: 0, width: 2732, height: 800 }, "spotlight-postcards.jpg");
-
-//   People's Store row (Mr. Krishnamoorthy portrait + postcard letter)
-await crop(2, { top: 2600, left: 0, width: 2732, height: 1100 }, "peoples-store.jpg");
-
-//   "we post it for you" strip with postcard + sun
-await crop(2, { top: 4100, left: 0, width: 2732, height: 1100 }, "we-post-it-for-you.jpg");
-
-// PAGE 3 (People + Career) (2732 × ~4608)
-const page3 = sharp(REF(3));
-const meta3 = await page3.metadata();
-console.log("page3 dims:", meta3.width, meta3.height);
-
-//   "everyone is an artist" 3-image strip
-await crop(3, { top: 380, left: 0, width: 2732, height: 1100 }, "everyone-is-an-artist.jpg");
-
-//   "your story → postcards" with sketch postcard
-await crop(3, { top: 1700, left: 0, width: 2732, height: 1100 }, "your-story-postcards.jpg");
-
-//   Career mandala (blue circular pattern)
-await crop(3, { top: 3300, left: 0, width: 2732, height: 1300 }, "career-mandala.jpg");
-
-// PAGE 4 (Travel)
-const page4 = sharp(REF(4));
-const meta4 = await page4.metadata();
-console.log("page4 dims:", meta4.width, meta4.height);
-
-//   Travel + Art Experience hero (mountains)
-await crop(4, { top: 0, left: 0, width: 2732, height: 1300 }, "travel-mountains-hero.jpg");
-
-//   Thailand sunset + ไทยแลนด์ script
+// PAGE 4 — Travel (2732 × 4608)
+//   Travel hero kept WITH baked-in "Travel + Art Experience" — design intent.
+await crop(4, { top: 0, left: 0, width: 2732, height: 1280 }, "travel-mountains-hero.jpg");
+//   Thailand sunset photo kept WITH baked-in "ไทยแลนด์" + "City Village Mountain" — design intent.
 await crop(4, { top: 1500, left: 0, width: 2732, height: 1300 }, "thailand-sunset.jpg");
+//   Sawadee + temple kept WITH baked-in Thai painted "sawadee khap" — design intent.
+await crop(4, { top: 3300, left: 0, width: 2732, height: 1100 }, "sawadee-khap.jpg");
 
-//   sawadee khap + temple
-await crop(4, { top: 3200, left: 0, width: 2732, height: 1400 }, "sawadee-khap.jpg");
-
-// PAGE 5 (Product detail) (2732 × ~3072)
-const page5 = sharp(REF(5));
-const meta5 = await page5.metadata();
-console.log("page5 dims:", meta5.width, meta5.height);
-
-//   Brihadeeshwarar postcard product image (the cream-paper card with temple+sun)
+// PAGE 5 — Product detail (2732 × 3072)
 await crop(5, { top: 200, left: 200, width: 1000, height: 1400 }, "product-brihadeeshwarar.jpg");
 
 console.log("Done.");

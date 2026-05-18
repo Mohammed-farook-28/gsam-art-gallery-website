@@ -1,7 +1,6 @@
 -- G.Sam Art Gallery — Supabase schema
--- Run this in the Supabase SQL editor for a fresh project, or copy into a migration.
+-- Idempotent: safe to re-run.
 
--- Helpful default
 create extension if not exists "pgcrypto";
 
 -- ─── Products ──────────────────────────────────────────────────────────────
@@ -18,20 +17,50 @@ create table if not exists public.products (
   created_at    timestamptz not null default now()
 );
 
--- ─── Orders (single-item buy from /store/[slug]) ───────────────────────────
+-- ─── Orders (header) ───────────────────────────────────────────────────────
+-- One row per cart checkout. Line items live in `order_items`.
 create table if not exists public.orders (
-  id                uuid primary key default gen_random_uuid(),
-  product_slug      text not null references public.products(slug),
-  product_title     text not null,
-  paper             text not null,
-  quantity          integer not null check (quantity > 0),
-  customer_name     text not null,
-  customer_email    text not null,
-  shipping_address  text not null,
-  status            text not null default 'pending'
-                    check (status in ('pending','paid','shipped','delivered','cancelled')),
-  created_at        timestamptz not null default now()
+  id                 uuid primary key default gen_random_uuid(),
+  customer_name      text not null,
+  customer_email     text not null,
+  customer_phone     text not null,
+  shipping_address   text not null,
+  shipping_city      text not null,
+  shipping_state     text not null,
+  shipping_pincode   text not null,
+  shipping_country   text not null default 'IN',
+  subtotal_inr       integer not null check (subtotal_inr >= 0),
+  shipping_inr       integer not null check (shipping_inr >= 0),
+  total_inr          integer not null check (total_inr >= 0),
+  currency           text not null default 'INR',
+  -- Razorpay fields (filled in after creating Razorpay order, then payment).
+  razorpay_order_id      text unique,
+  razorpay_payment_id    text,
+  razorpay_signature     text,
+  signature_verified     boolean not null default false,
+  status             text not null default 'pending'
+                     check (status in ('pending','paid','shipped','delivered','cancelled','failed')),
+  created_at         timestamptz not null default now(),
+  paid_at            timestamptz
 );
+
+create index if not exists orders_status_idx on public.orders(status);
+create index if not exists orders_email_idx  on public.orders(customer_email);
+
+-- ─── Order items (lines) ───────────────────────────────────────────────────
+create table if not exists public.order_items (
+  id              uuid primary key default gen_random_uuid(),
+  order_id        uuid not null references public.orders(id) on delete cascade,
+  product_slug    text not null references public.products(slug),
+  product_title   text not null,
+  paper           text not null,
+  quantity        integer not null check (quantity > 0),
+  unit_price_inr  integer not null check (unit_price_inr >= 0),
+  line_total_inr  integer not null check (line_total_inr >= 0),
+  created_at      timestamptz not null default now()
+);
+
+create index if not exists order_items_order_idx on public.order_items(order_id);
 
 -- ─── Form submissions ──────────────────────────────────────────────────────
 create table if not exists public.contact_submissions (
@@ -75,28 +104,44 @@ create table if not exists public.career_applications (
 );
 
 -- ─── RLS ──────────────────────────────────────────────────────────────────
--- Anonymous visitors can READ active products (catalog) and INSERT into the
--- form-submission tables. Read access for orders/submissions is owner-only;
--- in this admin-by-Supabase-Studio model we keep the service role for review.
-
 alter table public.products              enable row level security;
 alter table public.orders                enable row level security;
+alter table public.order_items           enable row level security;
 alter table public.contact_submissions   enable row level security;
 alter table public.letter_submissions    enable row level security;
 alter table public.retreat_signups       enable row level security;
 alter table public.career_applications   enable row level security;
 
--- Products: everyone can read active products
+-- Products: anyone can read active products
 drop policy if exists "products_read_active" on public.products;
 create policy "products_read_active" on public.products
   for select to anon, authenticated using (active);
 
--- Submissions: anyone can insert; nobody can read with anon key
+-- Orders & line items: anon CAN insert (a checkout creates a pending order).
+-- Reading individual orders by id is allowed so the success page can confirm
+-- the order summary; the id is a UUID and acts as an unguessable token.
+drop policy if exists "orders_insert" on public.orders;
+create policy "orders_insert" on public.orders
+  for insert to anon, authenticated with check (true);
+
+drop policy if exists "orders_read_by_id" on public.orders;
+create policy "orders_read_by_id" on public.orders
+  for select to anon, authenticated using (true);
+
+drop policy if exists "order_items_insert" on public.order_items;
+create policy "order_items_insert" on public.order_items
+  for insert to anon, authenticated with check (true);
+
+drop policy if exists "order_items_read" on public.order_items;
+create policy "order_items_read" on public.order_items
+  for select to anon, authenticated using (true);
+
+-- The form-submissions tables: insert-only for anon.
 do $$
 declare t text;
 begin
   for t in select unnest(array[
-    'orders','contact_submissions','letter_submissions','retreat_signups','career_applications'
+    'contact_submissions','letter_submissions','retreat_signups','career_applications'
   ]) loop
     execute format('drop policy if exists "%s_insert" on public.%I', t, t);
     execute format(

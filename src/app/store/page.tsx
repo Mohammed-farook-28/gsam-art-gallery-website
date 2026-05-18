@@ -3,7 +3,7 @@ import Link from "next/link";
 import { DisplaySans } from "@/components/display";
 import { MusicStaffScript } from "@/components/music-staff-script";
 import { AirmailStripe } from "@/components/airmail-stripe";
-import { SAMPLE_PRODUCTS } from "@/lib/products";
+import { listProducts } from "@/lib/products-server";
 
 export const metadata = {
   title: "Store — G.Sam Art Gallery",
@@ -16,7 +16,8 @@ type SearchParams = Promise<{ category?: string }>;
 export default async function StorePage({ searchParams }: { searchParams: SearchParams }) {
   const { category } = await searchParams;
   const filter = category === "greeting-cards" ? "greeting-cards" : category === "postcards" ? "postcards" : null;
-  const products = filter ? SAMPLE_PRODUCTS.filter((p) => p.category === filter) : SAMPLE_PRODUCTS;
+  const allProducts = await listProducts();
+  const products = filter ? allProducts.filter((p) => p.category === filter) : allProducts;
 
   return (
     <>
@@ -33,18 +34,20 @@ export default async function StorePage({ searchParams }: { searchParams: Search
           </DisplaySans>
         </div>
 
-        <div className="relative mt-10 aspect-[16/7] w-full overflow-hidden bg-ink">
-          <Image
-            src="/canva-extracts/store-stream-postcards.jpg"
-            alt="A stream and two postcards"
-            fill
-            sizes="(min-width: 1024px) 1366px, 100vw"
-            priority
-            className="object-cover"
-          />
-          <div className="absolute right-6 bottom-6 md:right-10 md:bottom-10 text-paper text-right">
-            <p className="font-script text-3xl md:text-5xl">Every art has</p>
-            <p className="font-script text-4xl md:text-6xl">a Story.</p>
+        <div className="relative mt-10 grid grid-cols-[1.3fr_1fr] gap-6 md:gap-10 items-stretch">
+          <div className="relative aspect-[19/10] w-full overflow-hidden bg-ink">
+            <Image
+              src="/canva-extracts/store-stream-postcards.jpg"
+              alt="A stream with two postcards laid over it"
+              fill
+              sizes="(min-width: 1024px) 800px, 100vw"
+              priority
+              className="object-cover"
+            />
+          </div>
+          <div className="flex flex-col justify-end pb-2 md:pb-6 md:px-2">
+            <p className="font-script text-4xl md:text-6xl text-ink leading-none">Every art has</p>
+            <p className="font-script text-5xl md:text-7xl text-ink leading-none mt-2">a Story.</p>
           </div>
         </div>
         <p className="mt-4 text-sm text-muted underline-offset-4">
@@ -115,7 +118,7 @@ export default async function StorePage({ searchParams }: { searchParams: Search
       <section className="mx-auto max-w-[1200px] px-6 md:px-10 py-20 md:py-28 grid gap-12 md:grid-cols-[1fr_1.4fr] items-center">
         <div className="relative aspect-[3/4] w-full max-w-md">
           <Image
-            src="/canva-extracts/peoples-store.jpg"
+            src="/canva-extracts/krishnamoorthy-portrait.jpg"
             alt="Mr. Krishnamoorthy"
             fill
             sizes="(min-width: 768px) 36vw, 80vw"
@@ -156,8 +159,8 @@ export default async function StorePage({ searchParams }: { searchParams: Search
         </div>
         <div className="relative aspect-[4/5] w-full max-w-md mx-auto">
           <Image
-            src="/canva-extracts/we-post-it-for-you.jpg"
-            alt="A postcard with a temple sketch"
+            src="/canva-extracts/post-postcard-sun.jpg"
+            alt="A postcard with a temple sketch and yellow sun"
             fill
             sizes="(min-width: 768px) 30vw, 80vw"
             className="object-contain"

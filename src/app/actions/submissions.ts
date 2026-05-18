@@ -92,21 +92,6 @@ export async function submitCareer(_: FormState, formData: FormData): Promise<Fo
   return insert("career_applications", parsed.data);
 }
 
-// ---------- ORDER (single-item buy from product page) ----------
-const orderSchema = z.object({
-  product_slug: z.string().min(1),
-  product_title: z.string().min(1),
-  paper: z.enum(["deluxe-300gsm", "textured-200gsm"]),
-  quantity: z.coerce.number().int().min(1).max(100),
-  customer_name: z.string().min(1),
-  customer_email: z.string().email(),
-  shipping_address: z.string().min(10, "We need a complete shipping address."),
-});
-
-export async function submitOrder(_: FormState, formData: FormData): Promise<FormState> {
-  const parsed = orderSchema.safeParse(Object.fromEntries(formData));
-  if (!parsed.success) {
-    return { ok: false, message: "Please fix the highlighted fields.", errors: parsed.error.flatten().fieldErrors };
-  }
-  return insert("orders", parsed.data);
-}
+// Orders are now created via the cart → /checkout flow.
+// See `app/actions/checkout.ts` for createPaymentSession +
+// verifyAndCompletePayment, which handle the multi-item order + Razorpay flow.

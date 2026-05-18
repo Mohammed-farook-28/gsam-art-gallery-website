@@ -13,23 +13,20 @@ export const metadata = {
 export default function TravelPage() {
   return (
     <>
-      {/* HERO — mountains + Travel + Art Experience */}
-      <section className="relative w-full h-[80svh] min-h-[520px] overflow-hidden bg-ink">
+      {/* HERO — mountains photo with the "Travel + Art / Experience" headline
+          baked into the Canva design. Header is hidden until scroll. */}
+      <section className="relative w-full h-[100svh] min-h-[600px] overflow-hidden bg-ink">
         <Image
           src="/canva-extracts/travel-mountains-hero.jpg"
-          alt="Karst mountains over still water"
+          alt="Travel + Art Experience — karst mountains over still water"
           fill
           priority
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-black/15" />
-        <div className="absolute inset-0 flex flex-col justify-end pb-16 md:pb-24 px-6 md:px-12">
-          <span className="font-script text-3xl md:text-5xl text-paper">Travel + Art.</span>
-          <DisplaySans as="h1" className="text-paper text-[clamp(5rem,16vw,15rem)] -mt-2 md:-mt-6">
-            Experience
-          </DisplaySans>
-        </div>
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-paper" />
+        {/* sr-only h1 so the page still has a clean heading hierarchy */}
+        <h1 className="sr-only">Travel + Art Experience</h1>
       </section>
 
       {/* BLURB */}
@@ -42,51 +39,46 @@ export default function TravelPage() {
         </p>
       </section>
 
-      {/* UPCOMING — Thailand */}
+      {/* UPCOMING — Thailand. The image has "Upcoming International experience" +
+          "ไทยแลนด์" + "City Village Mountain" baked in (design intent), so the
+          page only contributes the descriptive paragraph below. */}
       <section className="mx-auto max-w-[1366px] px-6 md:px-10">
-        <DisplaySans as="h2" className="text-[clamp(2.5rem,7vw,5.5rem)]">
-          Upcoming International experience
-        </DisplaySans>
-
-        <div className="relative mt-10 aspect-[16/9] w-full overflow-hidden bg-ink">
+        <h2 className="sr-only">Upcoming International experience — Thailand</h2>
+        <div className="relative aspect-[2732/1300] w-full overflow-hidden bg-ink">
           <Image
             src="/canva-extracts/thailand-sunset.jpg"
-            alt="Thailand mountains at sunset"
+            alt="Upcoming International experience — Thailand. City, village, mountain."
             fill
             sizes="(min-width: 1024px) 1366px, 100vw"
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/15 to-transparent" />
-          <div className="absolute inset-0 flex items-end justify-between gap-8 p-6 md:p-12">
-            <span
-              className="font-thai-display text-[clamp(3.5rem,11vw,9rem)] leading-none text-paper"
-              lang="th"
-            >
-              ไทยแลนด์
-            </span>
-            <div className="text-paper max-w-sm text-right">
-              <p className="uppercase tracking-[0.2em] text-xs md:text-sm font-semibold">
-                City · Village · Mountain
-              </p>
-              <p className="mt-3 text-sm md:text-base leading-relaxed text-paper/90">
-                Throughout the retreat, artists will explore the beauty of Thailand&apos;s
-                cities, villages, mountains, and natural spaces. Each day introduces a new
-                creative activity designed to awaken observation, imagination, and sensory
-                awareness — live sketching, memory drawing, movement studies, natural pigment
-                painting, mixed-media exploration.
-              </p>
-            </div>
-          </div>
         </div>
+        <p className="mt-8 max-w-prose text-base md:text-lg leading-relaxed text-ink/85">
+          Throughout the retreat, artists will explore the beauty of Thailand&apos;s cities,
+          villages, mountains, and natural spaces. Each day introduces a new creative
+          activity designed to awaken observation, imagination, and sensory awareness —{" "}
+          <strong className="font-semibold">
+            live sketching, memory drawing, movement studies, natural pigment painting,
+            mixed-media exploration.
+          </strong>{" "}
+          These practices encourage artists to experiment freely and discover new ways of
+          expressing themselves.
+        </p>
       </section>
 
-      {/* SAWADEE KHAP */}
-      <section className="mx-auto max-w-[1200px] px-6 md:px-10 py-20 md:py-28 grid gap-12 md:grid-cols-[1.3fr_1fr] items-center">
-        <div>
-          <p className="font-thai-display text-[clamp(3rem,8vw,7rem)] leading-none text-ink">
-            สวัสดีครับ
-          </p>
-          <p className="mt-6 text-base md:text-lg leading-relaxed text-ink/85 max-w-prose">
+      {/* SAWADEE KHAP — Thai painted greeting + temple circle, baked into image. */}
+      <section className="mx-auto max-w-[1366px] px-6 md:px-10 py-16 md:py-24">
+        <div className="relative aspect-[2732/1100] w-full overflow-hidden">
+          <Image
+            src="/canva-extracts/sawadee-khap.jpg"
+            alt="Sawadee khap — a Thai greeting, with a temple under a waterfall"
+            fill
+            sizes="(min-width: 1024px) 1366px, 100vw"
+            className="object-cover"
+          />
+        </div>
+        <div className="mt-10 grid gap-8 md:grid-cols-[1.3fr_1fr] items-start max-w-[1200px] mx-auto">
+          <p className="text-base md:text-lg leading-relaxed text-ink/85 max-w-prose">
             The Thailand Art Retreat is a seven-day immersive journey designed for artists
             who wish to slow down, reconnect with themselves, and rediscover their creativity.
             Organized by Gsam Art Gallery in collaboration with Ula Experience, this retreat
@@ -95,19 +87,10 @@ export default function TravelPage() {
           </p>
           <a
             href="#sign-up"
-            className="mt-10 inline-block text-base font-semibold underline underline-offset-8 decoration-1 hover:opacity-70"
+            className="md:justify-self-end self-start inline-block text-base font-semibold underline underline-offset-8 decoration-1 hover:opacity-70"
           >
             Explore the experience →
           </a>
-        </div>
-        <div className="relative aspect-square w-full max-w-md mx-auto">
-          <Image
-            src="/canva-extracts/sawadee-khap.jpg"
-            alt="A small temple"
-            fill
-            sizes="(min-width: 768px) 36vw, 80vw"
-            className="rounded-full object-cover"
-          />
         </div>
       </section>
 

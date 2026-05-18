@@ -100,7 +100,7 @@ export default function PeoplePage() {
         <div className="mt-10 grid gap-12 md:grid-cols-[1fr_1.4fr] items-start">
           <div className="relative aspect-[3/4] w-full max-w-md">
             <Image
-              src="/canva-extracts/peoples-store.jpg"
+              src="/canva-extracts/krishnamoorthy-portrait.jpg"
               alt="Mr. Krishnamoorthy portrait"
               fill
               sizes="(min-width: 768px) 36vw, 80vw"

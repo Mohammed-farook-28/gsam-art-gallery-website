@@ -6,9 +6,10 @@ import { AirmailStripe } from "@/components/airmail-stripe";
 export default function HomePage() {
   return (
     <>
-      {/* HERO — full-bleed forest photo with G.Sam + ART GALLERY (text baked into image
-          for now; replace public/canva-extracts/hero-forest.jpg with a clean photo
-          later and the overlay below will activate properly). */}
+      {/* HERO — full-bleed forest photo. The Canva export has G.Sam + ART GALLERY
+          baked in; the floating header now sits cleanly over the top of the image
+          with a soft scrim so both stay legible. Swap hero-forest.jpg for a clean
+          photo later and add an HTML wordmark overlay if needed. */}
       <section className="relative w-full h-[100svh] min-h-[600px] overflow-hidden bg-ink">
         <Image
           src="/canva-extracts/hero-forest.jpg"
@@ -18,11 +19,10 @@ export default function HomePage() {
           sizes="100vw"
           className="object-cover object-center"
         />
-        {/* Subtle scrim so the bottom edge fades into the next section */}
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-paper" />
         <a
           href="#intro"
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 text-paper/90 text-xs uppercase tracking-[0.3em] hover:text-paper"
+          className="absolute bottom-12 left-1/2 -translate-x-1/2 text-paper/90 text-[0.7rem] uppercase tracking-[0.3em] hover:text-paper"
         >
           ↓ Scroll
         </a>
@@ -83,7 +83,7 @@ export default function HomePage() {
             kicker="People"
             title="People's Store"
             tagline="We share their stories. We share Our profits."
-            image="/canva-extracts/peoples-store.jpg"
+            image="/canva-extracts/krishnamoorthy-portrait.jpg"
           />
           <Teaser
             href="/travel"
@@ -97,7 +97,7 @@ export default function HomePage() {
             kicker="A service"
             title="We post it for you"
             tagline="Send your message; we will write & post it."
-            image="/canva-extracts/we-post-it-for-you.jpg"
+            image="/canva-extracts/post-postcard-sun.jpg"
           />
         </ul>
       </section>

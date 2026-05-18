@@ -1,10 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { findProduct, SAMPLE_PRODUCTS } from "@/lib/products";
+import { SAMPLE_PRODUCTS } from "@/lib/products";
+import { findProduct, listProducts } from "@/lib/products-server";
 import { ProductPurchase } from "./product-purchase";
 
 export function generateStaticParams() {
+  // Static params come from the seed list at build time. Products added later
+  // in Supabase still resolve dynamically through findProduct() at request time.
   return SAMPLE_PRODUCTS.map((p) => ({ slug: p.slug }));
 }
 
@@ -12,7 +15,7 @@ type Params = Promise<{ slug: string }>;
 
 export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params;
-  const product = findProduct(slug);
+  const product = await findProduct(slug);
   if (!product) return { title: "Postcard — G.Sam Art Gallery" };
   return {
     title: `${product.title} — G.Sam Art Gallery`,
@@ -22,12 +25,13 @@ export async function generateMetadata({ params }: { params: Params }) {
 
 export default async function ProductPage({ params }: { params: Params }) {
   const { slug } = await params;
-  const product = findProduct(slug);
+  const product = await findProduct(slug);
   if (!product) notFound();
 
-  const idx = SAMPLE_PRODUCTS.findIndex((p) => p.slug === slug);
-  const next = SAMPLE_PRODUCTS[(idx + 1) % SAMPLE_PRODUCTS.length];
-  const prev = SAMPLE_PRODUCTS[(idx - 1 + SAMPLE_PRODUCTS.length) % SAMPLE_PRODUCTS.length];
+  const all = await listProducts();
+  const idx = all.findIndex((p) => p.slug === slug);
+  const next = all[(idx + 1) % all.length];
+  const prev = all[(idx - 1 + all.length) % all.length];
 
   return (
     <>

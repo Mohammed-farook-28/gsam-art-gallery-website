@@ -47,7 +47,7 @@ export default function LettersPage() {
         </div>
         <div className="relative aspect-[4/5] w-full max-w-md mx-auto">
           <Image
-            src="/canva-extracts/we-post-it-for-you.jpg"
+            src="/canva-extracts/post-postcard-sun.jpg"
             alt="A postcard with a temple sketch and a yellow sun"
             fill
             sizes="(min-width: 768px) 40vw, 80vw"

@@ -1,6 +1,5 @@
-// Product catalog. Until Supabase is wired up, this is the source of truth
-// for the store. After Supabase is configured, the store page will read from
-// the `products` table and fall back here only when the table is empty.
+// Product types + sample data. Pure module — safe to import from client
+// components. Server-only fetchers live in `products-server.ts`.
 
 export type Paper = "deluxe-300gsm" | "textured-200gsm";
 
@@ -50,10 +49,6 @@ export const SAMPLE_PRODUCTS: Product[] = [
     papers: ["deluxe-300gsm", "textured-200gsm"],
   },
 ];
-
-export function findProduct(slug: string): Product | undefined {
-  return SAMPLE_PRODUCTS.find((p) => p.slug === slug);
-}
 
 export const PAPER_LABELS: Record<Paper, string> = {
   "deluxe-300gsm": "Deluxe paper · 300gsm",
