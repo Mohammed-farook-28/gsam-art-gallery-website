@@ -37,13 +37,14 @@ export default function PeoplePage() {
 
       {/* 3-IMAGE STRIP */}
       <section className="mx-auto max-w-[1366px] px-6 md:px-10 mt-10">
-        <div className="relative aspect-[16/6] w-full overflow-hidden">
+        <div className="relative w-full">
           <Image
-            src="/canva-extracts/everyone-is-an-artist.jpg"
+            src="/canva-extracts/Screenshot 2026-05-19 130049.png"
             alt="Stadium screens, sunset audience, and a community sketch session"
-            fill
+            width={0}
+            height={0}
             sizes="(min-width: 1024px) 1366px, 100vw"
-            className="object-cover object-center"
+            className="w-full h-auto"
           />
         </div>
         <p className="mt-4 text-right text-sm md:text-base font-script text-ink/70">
@@ -66,28 +67,31 @@ export default function PeoplePage() {
       <AirmailStripe />
 
       {/* PROFIT-SHARING MESSAGE + POSTCARD MOCKUP */}
-      <section className="mx-auto max-w-[1200px] px-6 md:px-10 py-16 md:py-24 grid gap-12 md:grid-cols-2 items-center">
-        <div className="max-w-prose text-base md:text-lg leading-relaxed text-ink/85">
-          <p>
-            At Gsam Art Gallery, <strong className="font-semibold">we share our profits</strong>{" "}
-            with people. Your story have value. We collect your dreams, your emotions. We share
-            it with the world through postcards.
-          </p>
-          <Link
-            href="/letters"
-            className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] font-semibold border-b border-ink pb-1 hover:opacity-70"
-          >
-            Send us your story →
-          </Link>
-        </div>
-        <div className="relative aspect-[5/4] w-full">
-          <Image
-            src="/canva-extracts/your-story-postcards.jpg"
-            alt="Hand-drawn postcard front and back"
-            fill
-            sizes="(min-width: 768px) 50vw, 100vw"
-            className="object-contain"
-          />
+      <section className="mx-auto max-w-[1366px] px-6 md:px-10 py-16 md:py-24">
+        <div className="grid gap-12 md:grid-cols-[1fr_2fr] items-center">
+          <div className="max-w-prose text-base md:text-lg leading-relaxed text-ink/85">
+            <p>
+              At Gsam Art Gallery, <strong className="font-semibold">we share our profits</strong>{" "}
+              with people. Your story have value. We collect your dreams, your emotions. We share
+              it with the world through postcards.
+            </p>
+            <Link
+              href="/letters"
+              className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] font-semibold border-b border-ink pb-1 hover:opacity-70"
+            >
+              Send us your story →
+            </Link>
+          </div>
+          <div className="w-full">
+            <Image
+              src="/canva-extracts/Copy of Postcard set - 01.png"
+              alt="Hand-drawn postcard front and back"
+              width={0}
+              height={0}
+              sizes="(min-width: 1024px) 70vw, 100vw"
+              className="w-full h-auto"
+            />
+          </div>
         </div>
       </section>
 
@@ -100,11 +104,11 @@ export default function PeoplePage() {
         <div className="mt-10 grid gap-12 md:grid-cols-[1fr_1.4fr] items-start">
           <div className="relative aspect-[3/4] w-full max-w-md">
             <Image
-              src="/canva-extracts/krishnamoorthy-portrait.jpg"
+              src="/canva-extracts/Screenshot 2026-05-19 125014.png"
               alt="Mr. Krishnamoorthy portrait"
               fill
               sizes="(min-width: 768px) 36vw, 80vw"
-              className="object-cover"
+              className="object-contain"
             />
           </div>
           <ul className="space-y-12">

@@ -45,13 +45,14 @@ export default function LettersPage() {
             arts done with patience have been translated into postcards for you.
           </p>
         </div>
-        <div className="relative aspect-[4/5] w-full max-w-md mx-auto">
+        <div className="w-full">
           <Image
-            src="/canva-extracts/post-postcard-sun.jpg"
-            alt="A postcard with a temple sketch and a yellow sun"
-            fill
-            sizes="(min-width: 768px) 40vw, 80vw"
-            className="object-contain"
+            src="/canva-extracts/postcard-set-01.jpg"
+            alt="Postcard set design"
+            width={0}
+            height={0}
+            sizes="(min-width: 768px) 50vw, 100vw"
+            className="w-full h-auto"
           />
         </div>
       </section>

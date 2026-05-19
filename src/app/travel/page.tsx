@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { DisplaySans } from "@/components/display";
 import { AirmailStripe } from "@/components/airmail-stripe";
 import { RetreatSignupForm } from "./retreat-signup-form";
@@ -12,25 +13,52 @@ export const metadata = {
 export default function TravelPage() {
   return (
     <>
-      {/* HERO — cinematic video with "Travel + Art / Experience" overlay */}
-      <section className="relative w-full h-[100svh] min-h-[600px] overflow-hidden bg-ink">
+      {/* HERO — new video with paper-tear mask and reference text layout */}
+      <section className="relative w-full h-[100svh] min-h-[600px] overflow-hidden bg-paper">
         <VideoBg
-          src="/videos/travel-hero.mp4"
+          src="/videos/travel-experience.mp4"
           className="absolute inset-0 w-full h-full object-cover"
           overlay
-          overlayOpacity={0.15}
+          overlayOpacity={0.08}
         />
-        <div className="absolute inset-0 flex flex-col justify-end px-10 md:px-16 pb-20 md:pb-28">
-          <div className="flex items-baseline gap-4 flex-wrap">
-            <span className="font-sans font-black text-paper text-xl md:text-2xl tracking-wide drop-shadow">
-              Travel + Art
-            </span>
-          </div>
-          <h1 className="font-sans font-black text-paper text-[clamp(5rem,17vw,15rem)] leading-[0.9] uppercase drop-shadow-lg -ml-1">
+
+        {/* "Travel + Art" — dark, upper-center */}
+        <div className="absolute inset-x-0 top-[38%] flex justify-center px-[5%]">
+          <span className="font-sans font-black text-ink text-2xl md:text-3xl tracking-wide drop-shadow-sm">
+            Travel + Art
+          </span>
+        </div>
+
+        {/* "Experience" — large white, lower-left */}
+        <div className="absolute bottom-[18%] left-[5%]">
+          <h1
+            className="font-sans font-black text-paper leading-none"
+            style={{ fontSize: "clamp(4rem, 15vw, 13rem)" }}
+          >
             Experience
           </h1>
         </div>
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-paper" />
+
+        {/* Torn paper mask at bottom */}
+        <div className="absolute inset-x-0 bottom-0 pointer-events-none">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 160"
+            className="w-full block"
+            preserveAspectRatio="none"
+          >
+            <path
+              d="M0,160 L0,115 C25,98 55,130 85,112 C115,94 140,128 175,108
+                 C210,88 240,122 275,100 C310,78 345,115 385,93
+                 C425,71 455,108 498,85 C541,62 570,100 615,76
+                 C660,52 695,92 740,68 C785,44 820,84 868,60
+                 C916,36 950,76 998,52 C1046,28 1082,68 1130,44
+                 C1178,20 1215,58 1262,34 C1309,10 1348,48 1395,24
+                 L1440,10 L1440,160 Z"
+              fill="white"
+            />
+          </svg>
+        </div>
       </section>
 
       {/* BLURB */}
@@ -49,25 +77,32 @@ export default function TravelPage() {
           Upcoming International experience
         </h2>
         <div className="relative aspect-[2732/1300] w-full overflow-hidden bg-ink">
-          <VideoBg
-            src="/videos/thailand-landscape.mp4"
-            className="absolute inset-0 w-full h-full object-cover"
-            overlay
-            overlayOpacity={0.25}
+          <Image
+            src="/canva-extracts/thailand-scene.jpg"
+            alt="Thailand landscape"
+            fill
+            sizes="100vw"
+            className="object-cover"
           />
-          {/* Thai text left */}
+          {/* dark scrim for legibility */}
+          <div className="absolute inset-0 bg-black/30" />
+
+          {/* "Thailand" in Charm (AW-Siam-style English) — left */}
           <div className="absolute inset-y-0 left-0 flex flex-col justify-end p-6 md:p-10">
-            <p className="font-thai text-white/70 text-4xl md:text-6xl leading-none drop-shadow-lg">ว</p>
-            <p className="font-thai-display text-white text-[clamp(3.5rem,9vw,8rem)] leading-none drop-shadow-lg">
-              ไทยแลนด์
+            <p
+              className="font-thai-display text-white leading-none drop-shadow-lg"
+              style={{ fontSize: "clamp(3.5rem, 9vw, 8rem)" }}
+            >
+              Thailand
             </p>
           </div>
-          {/* City · Village · Mountain + description right */}
+
+          {/* CITY · VILLAGE · MOUNTAIN + description in Futura/Jost — right */}
           <div className="absolute inset-y-0 right-0 flex flex-col justify-center p-6 md:p-10 max-w-[360px] text-right">
-            <p className="font-sans font-bold text-white text-xs md:text-sm tracking-[0.2em] drop-shadow">
+            <p className="font-futura font-bold text-white text-xs md:text-sm tracking-[0.2em] drop-shadow uppercase">
               CITY · VILLAGE · MOUNTAIN
             </p>
-            <p className="mt-3 text-white/90 text-xs md:text-sm leading-relaxed drop-shadow">
+            <p className="font-futura mt-3 text-white/90 text-xs md:text-sm leading-relaxed drop-shadow">
               Throughout the retreat, artists will explore the beauty of Thailand&apos;s cities,
               villages, mountains, and natural spaces. Each day introduces a new creative
               activity designed to awaken observation, imagination, and sensory awareness.
@@ -106,17 +141,24 @@ export default function TravelPage() {
               Explore the experience →
             </a>
           </div>
-          {/* Circular video — waterfall / nature loop */}
-          <div className="relative aspect-square w-full max-w-sm mx-auto overflow-hidden rounded-full bg-ink">
+          {/* Blob-shaped video — waterfall loop with logo overlay */}
+          <div
+            className="relative aspect-square w-full max-w-sm mx-auto overflow-hidden bg-ink"
+            style={{ borderRadius: "55% 45% 42% 58% / 58% 44% 56% 42%" }}
+          >
             <VideoBg
-              src="/videos/hero-nature.mp4"
+              src="/videos/thailand-waterfall.mp4"
               className="absolute inset-0 w-full h-full object-cover"
             />
-            {/* ว ula overlay */}
+            {/* Logo image overlay */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <span className="font-thai-display text-white/80 text-[clamp(4rem,12vw,7rem)] drop-shadow-xl leading-none">
-                ว
-              </span>
+              <Image
+                src="/canva-extracts/Logo design.png"
+                alt="G.Sam logo"
+                width={340}
+                height={340}
+                className="object-contain drop-shadow-xl"
+              />
             </div>
           </div>
         </div>

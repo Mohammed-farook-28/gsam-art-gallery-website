@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useRef } from "react";
 
 interface VideoBgProps {
   src: string;
@@ -8,9 +9,20 @@ interface VideoBgProps {
 }
 
 export function VideoBg({ src, className = "", overlay = false, overlayOpacity = 0.3 }: VideoBgProps) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      videoRef.current.play().catch(e => console.log("Autoplay prevented:", e));
+    }
+  }, []);
+
   return (
     <>
       <video
+        ref={videoRef}
         src={src}
         autoPlay
         muted

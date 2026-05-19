@@ -22,10 +22,6 @@ const NAV_ITEMS = [
 // solid white treatment.
 const DARK_HERO_ROUTES = new Set(["/", "/travel"]);
 
-// Routes where the header is hidden entirely (it slides in smoothly when
-// navigating away via client-side routing).
-const HIDDEN_HEADER_ROUTES = new Set(["/"]);
-
 export function SiteHeader() {
   const pathname = usePathname();
   const overDarkHero = DARK_HERO_ROUTES.has(pathname);
@@ -33,14 +29,16 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    const threshold = pathname === "/" ? window.innerHeight * 0.8 : 60;
+    const onScroll = () => setScrolled(window.scrollY > threshold);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [pathname]);
 
   const lightTreatment = overDarkHero && !scrolled;
-  const hidden = HIDDEN_HEADER_ROUTES.has(pathname);
+  // On homepage: hide until scrolled past the hero
+  const hidden = pathname === "/" && !scrolled;
 
   return (
     <header

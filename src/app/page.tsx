@@ -22,68 +22,74 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-ink/15" />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-paper/25" />
 
-        {/* G.Sam — large script, left side, with text-shadow */}
-        <div
-          className="absolute pointer-events-none select-none"
-          style={{ left: "0%", top: "15%" }}
-        >
+        {/* Hero text overlay — two-row flex layout, equal padding on both sides */}
+        <div className="absolute inset-0 hidden lg:flex flex-col justify-between px-[5%] pt-[10svh] pb-[8svh] pointer-events-none select-none">
+
+          {/* Top row: G.Sam left | Nav links right */}
+          <div className="flex items-start justify-between gap-6">
+            <span
+              className="font-script-hero text-paper leading-none"
+              style={{
+                fontSize: "clamp(4.5rem, 13vw, 17rem)",
+                textShadow: "rgba(0,0,0,0.3) 2px 2px 4px",
+              }}
+            >
+              G.Sam
+            </span>
+
+            <nav className="flex flex-col items-end pointer-events-auto" style={{ gap: "1rem", paddingTop: "1rem" }}>
+              {[
+                { href: "/about",  label: "ABOUT"  },
+                { href: "/travel", label: "TRAVEL" },
+                { href: "/store",  label: "STORE"  },
+                { href: "/people", label: "PEOPLE" },
+              ].map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="font-sans text-paper font-bold tracking-widest text-3xl hover:opacity-75"
+                >
+                  {label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          {/* Bottom row: ART GALLERY left | Get in touch right */}
+          <div className="flex items-end justify-between gap-6">
+            <span
+              className="font-sans text-paper font-bold leading-none tracking-wide"
+              style={{ fontSize: "clamp(2rem, 7vw, 9rem)" }}
+            >
+              ART&nbsp;&nbsp;GALLERY
+            </span>
+
+            <Link
+              href="/contact"
+              className="font-sans text-paper font-bold uppercase tracking-wide hover:opacity-75 pointer-events-auto whitespace-nowrap"
+              style={{ fontSize: "clamp(1.5rem, 3.5vw, 4.5rem)" }}
+            >
+              Get in touch
+            </Link>
+          </div>
+
+        </div>
+
+        {/* Mobile: G.Sam + ART GALLERY stacked, no nav (handled by burger menu) */}
+        <div className="absolute inset-0 flex lg:hidden flex-col justify-between px-5 pt-[12svh] pb-[10svh] pointer-events-none select-none">
           <span
             className="font-script-hero text-paper leading-none"
-            style={{
-              fontSize: "clamp(4.5rem, 13vw, 17rem)",
-              textShadow: "rgba(0,0,0,0.3) 2px 2px 4px",
-            }}
+            style={{ fontSize: "clamp(4rem, 18vw, 7rem)", textShadow: "rgba(0,0,0,0.3) 2px 2px 4px" }}
           >
             G.Sam
           </span>
-        </div>
-
-        {/* ART GALLERY — bold sans, lower-left */}
-        <div
-          className="absolute"
-          style={{ left: "9%", top: "54%" }}
-        >
           <span
             className="font-sans text-paper font-bold leading-none tracking-wide"
-            style={{ fontSize: "clamp(2rem, 7vw, 9rem)" }}
+            style={{ fontSize: "clamp(1.8rem, 10vw, 4rem)" }}
           >
             ART&nbsp;&nbsp;GALLERY
           </span>
         </div>
-
-        {/* Right-side nav links — ABOUT / TRAVEL / STORE / PEOPLE */}
-        <div
-          className="absolute hidden lg:flex flex-col items-start"
-          style={{ left: "69%", top: "36%", gap: "1.1rem" }}
-        >
-          {[
-            { href: "/about", label: "ABOUT" },
-            { href: "/travel", label: "TRAVEL" },
-            { href: "/store", label: "STORE" },
-            { href: "/people", label: "PEOPLE" },
-          ].map(({ href, label }) => (
-            <Link
-              key={href}
-              href={href}
-              className="font-sans text-paper font-bold tracking-widest text-3xl hover:opacity-75 py-1"
-            >
-              {label}
-            </Link>
-          ))}
-        </div>
-
-        {/* Get in touch — large uppercase, lower-right area */}
-        <Link
-          href="/contact"
-          className="absolute hidden lg:block font-sans text-paper font-bold uppercase hover:opacity-75"
-          style={{
-            left: "57.6%",
-            top: "75.5%",
-            fontSize: "clamp(2rem, 5vw, 6.5rem)",
-          }}
-        >
-          Get in touch
-        </Link>
 
         {/* scroll hint */}
         <a
@@ -119,14 +125,16 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div className="relative aspect-square w-full max-w-md mx-auto">
-          <Image
-            src="/canva-extracts/why-circle.jpg"
-            alt="Reflections in still water"
-            fill
-            sizes="(min-width: 768px) 36vw, 80vw"
-            className="rounded-full object-cover grayscale"
-          />
+        <div className="relative aspect-square w-full max-w-md mx-auto rounded-full overflow-hidden">
+          <video
+            className="absolute inset-0 w-full h-full object-cover grayscale"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src="/videos/why-circle.mp4" type="video/mp4" />
+          </video>
           <span className="absolute inset-0 flex items-center justify-center">
             <MusicStaffScript size="xl" className="text-paper drop-shadow">Why?</MusicStaffScript>
           </span>
@@ -181,16 +189,15 @@ export default function HomePage() {
       </nav>
 
       {/* TEMPLE / ART GALLERY closer */}
-      <section className="relative bg-ink text-paper overflow-hidden">
-        <div className="relative w-full h-[80svh] min-h-[520px]">
-          <Image
-            src="/canva-extracts/temple-art-gallery.jpg"
-            alt="Brihadeeshwarar temple — pen and ink"
-            fill
-            sizes="100vw"
-            className="object-cover object-bottom opacity-90"
-          />
-        </div>
+      <section className="bg-ink text-paper">
+        <Image
+          src="/canva-extracts/345.png"
+          alt="Brihadeeshwarar temple — pen and ink"
+          width={0}
+          height={0}
+          sizes="100vw"
+          className="w-full h-auto opacity-90"
+        />
       </section>
     </>
   );

@@ -17,6 +17,7 @@
   --font-script-hero: var(--font-script-hero), cursive;
   --font-thai-display: var(--font-thai-display), sans-serif;
   --font-thai: var(--font-thai), sans-serif;
+  --font-futura: var(--font-futura), "Futura", "Century Gothic", sans-serif;
 }
 
 :root {

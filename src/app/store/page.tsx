@@ -24,53 +24,100 @@ export default async function StorePage({ searchParams }: { searchParams: Search
     <>
       <div className="h-20" />
 
-      {/* HERO row — script kicker + Store mega-headline + stream wide image */}
-      <section className="mx-auto max-w-[1366px] px-6 md:px-10 pt-12 md:pt-20">
-        <div className="flex items-end justify-between gap-6 flex-wrap">
-          <p className="font-script text-2xl md:text-3xl text-ink/80 max-w-md">
-            Experience the joy of writing a letter for your loved one,
-          </p>
-          <DisplaySans as="h1" className="text-[clamp(4rem,16vw,14rem)]">
+      {/* HERO — full-width video, postcards 70% inside / 30% outside bottom */}
+      <section className="mx-auto max-w-[1366px] px-6 md:px-10 pt-6 md:pt-10">
+
+        {/* Top row: music-staff left | Store right */}
+        <div className="flex items-end justify-between gap-4 flex-wrap">
+          <div className="max-w-sm flex flex-col items-start -space-y-2">
+            <MusicStaffScript size="sm" className="text-ink/80">
+              Experience the joy of writing a letter
+            </MusicStaffScript>
+            <MusicStaffScript size="sm" className="text-ink/80">
+              for your loved one,
+            </MusicStaffScript>
+          </div>
+          <DisplaySans as="h1" className="text-[clamp(2.5rem,8vw,6.5rem)] leading-none">
             Store
           </DisplaySans>
         </div>
 
-        <div className="relative mt-10 grid grid-cols-[1.3fr_1fr] gap-6 md:gap-10 items-stretch">
-          <div className="relative aspect-[19/10] w-full overflow-hidden bg-ink">
-            <VideoBg
-              src="/videos/store-stream.mp4"
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-            {/* Postcard artwork overlaid on the nature video */}
-            <div className="absolute inset-0 flex items-end gap-3 p-4 pointer-events-none">
-              <div className="relative w-2/5 aspect-[3/4] shadow-2xl rotate-[-3deg]">
-                <Image
-                  src="/canva-extracts/product-brihadeeshwarar.jpg"
-                  alt="Brihadeeshwara Temple postcard"
-                  fill
-                  sizes="200px"
-                  priority
-                  className="object-cover"
-                />
-              </div>
-              <div className="relative w-2/5 aspect-[3/4] shadow-2xl rotate-[2deg] -mb-2">
-                <Image
-                  src="/canva-extracts/postcard-letter-sample.jpg"
-                  alt="Postcard sample"
-                  fill
-                  sizes="200px"
-                  className="object-cover"
-                />
-              </div>
+        {/* Full-width video — outer wrapper is NOT overflow-hidden so postcards can escape */}
+        <div className="relative mt-4" style={{ paddingBottom: "clamp(55px,9vw,110px)" }}>
+
+          {/* Video strip — inner div clips the video */}
+          <div className="relative w-full bg-ink" style={{ aspectRatio: "22/7" }}>
+            <div className="absolute inset-0 overflow-hidden">
+              <VideoBg
+                src="/videos/store-stream.mp4"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/25" />
+            </div>
+
+            {/* "Every art has a Story." — white text, right side of video */}
+            <div className="absolute right-8 md:right-14 inset-y-0 flex flex-col justify-center text-right z-10">
+              <p
+                className="font-sans font-black text-paper leading-[1.05]"
+                style={{ fontSize: "clamp(1.2rem,2.6vw,2.6rem)" }}
+              >
+                Every<br />art has<br />a<br />Story.
+              </p>
             </div>
           </div>
-          <div className="flex flex-col justify-end pb-2 md:pb-6 md:px-2">
-            <p className="font-script text-4xl md:text-6xl text-ink leading-none">Every art has</p>
-            <p className="font-script text-5xl md:text-7xl text-ink leading-none mt-2">a Story.</p>
+
+          {/* Postcards: anchored at video bottom, translateY(30%) pushes 30% below */}
+          <div
+            className="absolute bottom-0 left-6 md:left-10 flex items-start gap-1 z-20"
+            style={{ transform: "translateY(0%)" }}
+          >
+            {/* Postcard 1 — leaning left ~25° */}
+            <div
+              style={{
+                position: "relative",
+                width:  "clamp(105px,14vw,195px)",
+                height: "clamp(140px,18vw,255px)",
+                transform: "rotate(-25deg)",
+                transformOrigin: "bottom center",
+                filter: "drop-shadow(0 14px 30px rgba(0,0,0,0.65))",
+              }}
+            >
+              <Image
+                src="/canva-extracts/store-postcard-1.png"
+                alt="Gsam postcard art"
+                fill
+                sizes="195px"
+                className="object-contain"
+                priority
+              />
+            </div>
+
+            {/* Postcard 2 — leaning right ~20°, overlapping slightly */}
+            <div
+              style={{
+                position: "relative",
+                width:  "clamp(105px,14vw,195px)",
+                height: "clamp(120px,16vw,225px)",
+                transform: "rotate(20deg)",
+                transformOrigin: "bottom center",
+                filter: "drop-shadow(0 14px 30px rgba(0,0,0,0.65))",
+                marginLeft: "clamp(-24px,-2vw,-10px)",
+              }}
+            >
+              <Image
+                src="/canva-extracts/store-postcard-2.png"
+                alt="Gsam postcard back"
+                fill
+                sizes="195px"
+                className="object-contain"
+              />
+            </div>
           </div>
+
         </div>
-        <p className="mt-4 text-sm text-muted underline-offset-4">
-          <Link href="#collection" className="underline">View Gsam collection</Link>
+
+        <p className="mt-2 text-sm text-muted">
+          <Link href="#collection" className="underline underline-offset-4">View Gsam collection</Link>
         </p>
       </section>
 
@@ -79,7 +126,7 @@ export default async function StorePage({ searchParams }: { searchParams: Search
         <CategoryTab href="/store" active={!filter}>All</CategoryTab>
         <CategoryTab href="/store?category=postcards" active={filter === "postcards"}>Postcards</CategoryTab>
         <CategoryTab href="/store?category=greeting-cards" active={filter === "greeting-cards"}>Greeting cards</CategoryTab>
-        <Link href="/people" className="ml-auto opacity-70 hover:opacity-100">People&apos;s store →</Link>
+        <Link href="/people" scroll={false} className="ml-auto opacity-70 hover:opacity-100">People&apos;s store →</Link>
       </nav>
 
       {/* PRODUCT GRID */}
@@ -88,13 +135,13 @@ export default async function StorePage({ searchParams }: { searchParams: Search
           {products.map((p) => (
             <li key={p.slug}>
               <Link href={`/store/${p.slug}`} className="group block">
-                <div className="relative aspect-[3/4] overflow-hidden bg-cream">
+                <div className="relative aspect-[3/4] overflow-hidden bg-paper border border-rule/40">
                   <Image
                     src={p.image}
                     alt={p.title}
                     fill
                     sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    className="object-contain transition-transform duration-700 group-hover:scale-[1.03] p-3"
                   />
                 </div>
                 <p className="mt-5 font-script text-2xl md:text-3xl text-ink/85 leading-tight">{p.title}</p>
@@ -115,13 +162,14 @@ export default async function StorePage({ searchParams }: { searchParams: Search
             <MusicStaffScript size="md">Experience the joy of writing a letter for your loved one,</MusicStaffScript>
           </span>
         </div>
-        <div className="mt-10 relative aspect-[16/6] w-full">
+        <div className="mt-10 relative w-full">
           <Image
-            src="/canva-extracts/spotlight-postcards.jpg"
+            src="/canva-extracts/Screenshot 2026-05-19 123944.png"
             alt="Three postcard designs in a row"
-            fill
+            width={0}
+            height={0}
             sizes="(min-width: 1024px) 1366px, 100vw"
-            className="object-cover"
+            className="w-full h-auto"
           />
         </div>
         <p className="mt-6 max-w-prose text-base leading-relaxed text-ink/85">
@@ -137,11 +185,11 @@ export default async function StorePage({ searchParams }: { searchParams: Search
       <section className="mx-auto max-w-[1200px] px-6 md:px-10 py-20 md:py-28 grid gap-12 md:grid-cols-[1fr_1.4fr] items-center">
         <div className="relative aspect-[3/4] w-full max-w-md">
           <Image
-            src="/canva-extracts/krishnamoorthy-portrait.jpg"
+            src="/canva-extracts/Screenshot 2026-05-19 125014.png"
             alt="Mr. Krishnamoorthy"
             fill
             sizes="(min-width: 768px) 36vw, 80vw"
-            className="object-cover"
+            className="object-contain"
           />
         </div>
         <div>
@@ -178,8 +226,8 @@ export default async function StorePage({ searchParams }: { searchParams: Search
         </div>
         <div className="relative aspect-[4/5] w-full max-w-md mx-auto">
           <Image
-            src="/canva-extracts/post-postcard-sun.jpg"
-            alt="A postcard with a temple sketch and yellow sun"
+            src="/canva-extracts/postcard-set-01.jpg"
+            alt="Postcard set design"
             fill
             sizes="(min-width: 768px) 30vw, 80vw"
             className="object-contain"
@@ -202,6 +250,7 @@ function CategoryTab({
   return (
     <Link
       href={href}
+      scroll={false}
       className={
         active
           ? "py-2 border-b-2 border-ink -mb-[17px]"

@@ -1,4 +1,4 @@
-import { Inter, Fraunces, Allura, Pinyon_Script, Charm, Noto_Sans_Thai } from "next/font/google";
+import { Inter, Fraunces, Allura, Pinyon_Script, Charm, Noto_Sans_Thai, Jost } from "next/font/google";
 
 export const inter = Inter({
   subsets: ["latin"],
@@ -40,6 +40,12 @@ export const notoSansThai = Noto_Sans_Thai({
   display: "swap",
 });
 
+export const jost = Jost({
+  subsets: ["latin"],
+  variable: "--font-futura",
+  display: "swap",
+});
+
 export const fontVariables = [
   inter.variable,
   fraunces.variable,
@@ -47,4 +53,5 @@ export const fontVariables = [
   pinyon.variable,
   charm.variable,
   notoSansThai.variable,
+  jost.variable,
 ].join(" ");

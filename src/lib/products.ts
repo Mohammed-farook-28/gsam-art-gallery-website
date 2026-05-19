@@ -22,7 +22,7 @@ export const SAMPLE_PRODUCTS: Product[] = [
     size: "A6",
     description:
       "To empower lives of every human, capture the beauty of life. To be human, to feel deeply, to experience life. To create a way for people to let out their emotions, creating empathy at a global scale.",
-    image: "/canva-extracts/product-brihadeeshwarar.jpg",
+    image: "/canva-extracts/product-brihadeeshwarar-hq.png",
     price_inr: 199,
     papers: ["deluxe-300gsm", "textured-200gsm"],
   },
@@ -33,7 +33,7 @@ export const SAMPLE_PRODUCTS: Product[] = [
     size: "A6",
     description:
       "A quiet morning by the water — for the friend who needs to be reminded to slow down.",
-    image: "/canva-extracts/why-circle.jpg",
+    image: "/canva-extracts/product-still-pond-hq.png",
     price_inr: 199,
     papers: ["deluxe-300gsm", "textured-200gsm"],
   },
@@ -44,7 +44,7 @@ export const SAMPLE_PRODUCTS: Product[] = [
     size: "A6",
     description:
       "Three originals, hand-translated into greeting cards. Pick a favourite or send all three.",
-    image: "/canva-extracts/spotlight-postcards.jpg",
+    image: "/canva-extracts/product-spotlight-hq.png",
     price_inr: 499,
     papers: ["deluxe-300gsm", "textured-200gsm"],
   },
