@@ -30,7 +30,8 @@ export function VideoBg({ src, className = "", overlay = false, overlayOpacity =
         playsInline
         disablePictureInPicture
         preload="metadata"
-        className={`${className}`}
+        aria-hidden="true"
+        className={className}
         style={{ pointerEvents: "none" }}
       />
       {overlay && (

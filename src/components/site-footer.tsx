@@ -5,7 +5,7 @@ export function SiteFooter() {
   return (
     <footer className="mt-32 bg-ink text-paper">
       <AirmailStripe />
-      <div className="mx-auto max-w-[1366px] px-6 md:px-10 py-16 grid gap-12 md:grid-cols-3">
+      <div className="mx-auto max-w-341.5 px-6 md:px-10 py-16 grid gap-12 md:grid-cols-3">
         <div>
           <p className="font-script-hero text-5xl leading-none">G.Sam</p>
           <p className="mt-2 uppercase tracking-[0.18em] text-xs text-paper/70">

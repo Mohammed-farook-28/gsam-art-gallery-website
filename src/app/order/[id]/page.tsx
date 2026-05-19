@@ -1,10 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 import { DisplaySans } from "@/components/display";
 import { MusicStaffScript } from "@/components/music-staff-script";
 import { AirmailStripe } from "@/components/airmail-stripe";
-import { PAPER_LABELS } from "@/lib/products";
+import { PAPER_LABELS, type Paper } from "@/lib/products";
 
 type Params = Promise<{ id: string }>;
 type SearchParams = Promise<{ manual?: string }>;
@@ -29,12 +30,12 @@ type OrderRow = {
 type OrderItemRow = {
   product_slug: string;
   product_title: string;
-  paper: "deluxe-300gsm" | "textured-200gsm";
+  paper: Paper;
   quantity: number;
   line_total_inr: number;
 };
 
-export const metadata = { title: "Order received — G.Sam Art Gallery" };
+export const metadata: Metadata = { title: "Order received — G.Sam Art Gallery" };
 
 export default async function OrderConfirmationPage({
   params,
@@ -70,7 +71,7 @@ export default async function OrderConfirmationPage({
   return (
     <>
       <div className="h-20" />
-      <section className="mx-auto max-w-[900px] px-6 md:px-10 pt-12 md:pt-20 pb-12">
+      <section className="mx-auto max-w-225 px-6 md:px-10 pt-12 md:pt-20 pb-12">
         <p className="text-xs uppercase tracking-[0.22em] text-muted font-semibold">
           Order #{order.id.slice(0, 8)}
         </p>
@@ -104,6 +105,11 @@ export default async function OrderConfirmationPage({
         {/* ITEMS */}
         <div className="mt-12 border-t border-rule pt-6">
           <h2 className="text-xs uppercase tracking-[0.22em] font-semibold">Items</h2>
+          {!items && (
+            <p className="mt-4 text-sm text-muted">
+              Could not load item details. Contact support with your order number.
+            </p>
+          )}
           <ul className="mt-4 divide-y divide-rule">
             {(items ?? []).map((it, idx) => (
               <li key={idx} className="py-4 flex items-baseline gap-4 text-sm">
@@ -147,7 +153,7 @@ export default async function OrderConfirmationPage({
 
       <AirmailStripe />
 
-      <section className="mx-auto max-w-[900px] px-6 md:px-10 py-16 text-center">
+      <section className="mx-auto max-w-225 px-6 md:px-10 py-16 text-center">
         <Link
           href="/store"
           className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] font-semibold border border-ink px-8 py-4 hover:bg-ink hover:text-paper transition-colors"

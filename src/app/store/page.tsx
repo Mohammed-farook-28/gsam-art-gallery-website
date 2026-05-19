@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { DisplaySans } from "@/components/display";
@@ -6,7 +7,7 @@ import { AirmailStripe } from "@/components/airmail-stripe";
 import { listProducts } from "@/lib/products-server";
 import { VideoBg } from "@/components/video-bg";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Store — G.Sam Art Gallery",
   description:
     "Postcards and greeting cards. Originals translated into paper. Every art has a story.",
@@ -25,11 +26,14 @@ export default async function StorePage({ searchParams }: { searchParams: Search
       <div className="h-20" />
 
       {/* HERO — full-width video, postcards 70% inside / 30% outside bottom */}
-      <section className="mx-auto max-w-[1366px] px-6 md:px-10 pt-6 md:pt-10">
+      <section className="mx-auto max-w-341.5 px-6 md:px-10 pt-6 md:pt-10">
 
-        {/* Top row: music-staff left | Store right */}
+        {/* Top row: Store left | music-staff right */}
         <div className="flex items-end justify-between gap-4 flex-wrap">
-          <div className="max-w-sm flex flex-col items-start -space-y-2">
+          <DisplaySans as="h1" className="text-[clamp(2.5rem,8vw,6.5rem)] leading-none">
+            Store
+          </DisplaySans>
+          <div className="max-w-sm flex flex-col items-end -space-y-2">
             <MusicStaffScript size="sm" className="text-ink/80">
               Experience the joy of writing a letter
             </MusicStaffScript>
@@ -37,9 +41,6 @@ export default async function StorePage({ searchParams }: { searchParams: Search
               for your loved one,
             </MusicStaffScript>
           </div>
-          <DisplaySans as="h1" className="text-[clamp(2.5rem,8vw,6.5rem)] leading-none">
-            Store
-          </DisplaySans>
         </div>
 
         {/* Full-width video — outer wrapper is NOT overflow-hidden so postcards can escape */}
@@ -55,60 +56,60 @@ export default async function StorePage({ searchParams }: { searchParams: Search
               <div className="absolute inset-0 bg-black/25" />
             </div>
 
-            {/* "Every art has a Story." — white text, right side of video */}
+            {/* "Every art has a Story." — mixed fonts, right side of video */}
             <div className="absolute right-8 md:right-14 inset-y-0 flex flex-col justify-center text-right z-10">
-              <p
-                className="font-sans font-black text-paper leading-[1.05]"
-                style={{ fontSize: "clamp(1.2rem,2.6vw,2.6rem)" }}
-              >
-                Every<br />art has<br />a<br />Story.
+              <p className="leading-tight">
+                <span
+                  className="block font-script text-paper"
+                  style={{ fontSize: "clamp(1.4rem,3vw,3rem)" }}
+                >
+                  Every art has
+                </span>
+                <span
+                  className="block font-sans font-black text-paper uppercase tracking-widest"
+                  style={{ fontSize: "clamp(1.6rem,3.4vw,3.4rem)" }}
+                >
+                  a Story.
+                </span>
               </p>
             </div>
           </div>
 
-          {/* Postcards: anchored at video bottom, translateY(30%) pushes 30% below */}
-          <div
-            className="absolute bottom-0 left-6 md:left-10 flex items-start gap-1 z-20"
-            style={{ transform: "translateY(0%)" }}
-          >
-            {/* Postcard 1 — leaning left ~25° */}
+          {/* Postcards: side by side, upright, sitting at the video bottom edge */}
+          <div className="absolute bottom-0 left-6 md:left-10 flex items-end gap-3 z-20">
+            {/* Postcard 1 — upright */}
             <div
               style={{
                 position: "relative",
-                width:  "clamp(105px,14vw,195px)",
-                height: "clamp(140px,18vw,255px)",
-                transform: "rotate(-25deg)",
-                transformOrigin: "bottom center",
-                filter: "drop-shadow(0 14px 30px rgba(0,0,0,0.65))",
+                width:  "clamp(90px,12vw,170px)",
+                height: "clamp(120px,16vw,225px)",
+                filter: "drop-shadow(0 8px 20px rgba(0,0,0,0.5))",
               }}
             >
               <Image
                 src="/canva-extracts/store-postcard-1.png"
                 alt="Gsam postcard art"
                 fill
-                sizes="195px"
+                sizes="170px"
                 className="object-contain"
                 priority
               />
             </div>
 
-            {/* Postcard 2 — leaning right ~20°, overlapping slightly */}
+            {/* Postcard 2 — upright */}
             <div
               style={{
                 position: "relative",
-                width:  "clamp(105px,14vw,195px)",
+                width:  "clamp(90px,12vw,170px)",
                 height: "clamp(120px,16vw,225px)",
-                transform: "rotate(20deg)",
-                transformOrigin: "bottom center",
-                filter: "drop-shadow(0 14px 30px rgba(0,0,0,0.65))",
-                marginLeft: "clamp(-24px,-2vw,-10px)",
+                filter: "drop-shadow(0 8px 20px rgba(0,0,0,0.5))",
               }}
             >
               <Image
                 src="/canva-extracts/store-postcard-2.png"
                 alt="Gsam postcard back"
                 fill
-                sizes="195px"
+                sizes="170px"
                 className="object-contain"
               />
             </div>
@@ -116,13 +117,13 @@ export default async function StorePage({ searchParams }: { searchParams: Search
 
         </div>
 
-        <p className="mt-2 text-sm text-muted">
+        <p className="mt-12 text-base text-muted">
           <Link href="#collection" className="underline underline-offset-4">View Gsam collection</Link>
         </p>
       </section>
 
       {/* CATEGORY TABS */}
-      <nav id="collection" className="mx-auto max-w-[1366px] px-6 md:px-10 mt-16 md:mt-24 flex flex-wrap items-center gap-x-8 gap-y-3 border-b border-rule pb-4 uppercase tracking-[0.18em] text-xs">
+      <nav id="collection" className="mx-auto max-w-341.5 px-6 md:px-10 mt-16 md:mt-24 flex flex-wrap items-center gap-x-8 gap-y-3 border-b border-rule pb-4 uppercase tracking-[0.18em] text-xs">
         <CategoryTab href="/store" active={!filter}>All</CategoryTab>
         <CategoryTab href="/store?category=postcards" active={filter === "postcards"}>Postcards</CategoryTab>
         <CategoryTab href="/store?category=greeting-cards" active={filter === "greeting-cards"}>Greeting cards</CategoryTab>
@@ -130,12 +131,12 @@ export default async function StorePage({ searchParams }: { searchParams: Search
       </nav>
 
       {/* PRODUCT GRID */}
-      <section className="mx-auto max-w-[1366px] px-6 md:px-10 py-12 md:py-16">
+      <section className="mx-auto max-w-341.5 px-6 md:px-10 py-12 md:py-16">
         <ul className="grid gap-10 md:gap-12 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((p) => (
             <li key={p.slug}>
               <Link href={`/store/${p.slug}`} className="group block">
-                <div className="relative aspect-[3/4] overflow-hidden bg-paper border border-rule/40">
+                <div className="relative aspect-3/4 overflow-hidden bg-paper border border-rule/40">
                   <Image
                     src={p.image}
                     alt={p.title}
@@ -155,7 +156,7 @@ export default async function StorePage({ searchParams }: { searchParams: Search
       </section>
 
       {/* SPOTLIGHT */}
-      <section className="mx-auto max-w-[1366px] px-6 md:px-10 py-16 md:py-24">
+      <section className="mx-auto max-w-341.5 px-6 md:px-10 py-16 md:py-24">
         <div className="flex flex-wrap items-end gap-x-6 gap-y-3">
           <DisplaySans as="h2" className="text-[clamp(3rem,10vw,8rem)]">Spotlight</DisplaySans>
           <span className="pb-4">
@@ -182,8 +183,8 @@ export default async function StorePage({ searchParams }: { searchParams: Search
       <AirmailStripe />
 
       {/* PEOPLE'S STORE TEASER */}
-      <section className="mx-auto max-w-[1200px] px-6 md:px-10 py-20 md:py-28 grid gap-12 md:grid-cols-[1fr_1.4fr] items-center">
-        <div className="relative aspect-[3/4] w-full max-w-md">
+      <section className="mx-auto max-w-300 px-6 md:px-10 py-20 md:py-28 grid gap-12 md:grid-cols-[1fr_1.4fr] items-center">
+        <div className="relative aspect-3/4 w-full max-w-md">
           <Image
             src="/canva-extracts/Screenshot 2026-05-19 125014.png"
             alt="Mr. Krishnamoorthy"
@@ -211,7 +212,7 @@ export default async function StorePage({ searchParams }: { searchParams: Search
       <AirmailStripe />
 
       {/* SEND A LETTER CTA */}
-      <section className="mx-auto max-w-[1200px] px-6 md:px-10 py-20 md:py-28 grid gap-12 md:grid-cols-[1.4fr_1fr] items-center">
+      <section className="mx-auto max-w-300 px-6 md:px-10 py-20 md:py-28 grid gap-12 md:grid-cols-[1.4fr_1fr] items-center">
         <div>
           <p className="font-script text-2xl md:text-3xl text-ink/80">
             send us your message, we will write and
@@ -224,7 +225,7 @@ export default async function StorePage({ searchParams }: { searchParams: Search
             Send now →
           </Link>
         </div>
-        <div className="relative aspect-[4/5] w-full max-w-md mx-auto">
+        <div className="relative aspect-4/5 w-full max-w-md mx-auto">
           <Image
             src="/canva-extracts/postcard-set-01.jpg"
             alt="Postcard set design"

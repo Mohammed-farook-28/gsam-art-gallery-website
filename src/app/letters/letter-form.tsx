@@ -29,10 +29,10 @@ export function LetterForm() {
           From
         </legend>
         <div className="grid gap-8 md:grid-cols-2">
-          <Field label="Your name" htmlFor="letter-sender-name">
+          <Field label="Your name" htmlFor="letter-sender-name" hint={state.errors?.sender_name?.[0]}>
             <TextInput id="letter-sender-name" name="sender_name" required autoComplete="name" />
           </Field>
-          <Field label="Your email" htmlFor="letter-sender-email">
+          <Field label="Your email" htmlFor="letter-sender-email" hint={state.errors?.sender_email?.[0]}>
             <TextInput id="letter-sender-email" name="sender_email" type="email" required autoComplete="email" />
           </Field>
         </div>
@@ -42,15 +42,15 @@ export function LetterForm() {
         <legend className="text-[0.7rem] uppercase tracking-[0.22em] text-muted font-semibold">
           To
         </legend>
-        <Field label="Recipient name" htmlFor="letter-recipient-name">
+        <Field label="Recipient name" htmlFor="letter-recipient-name" hint={state.errors?.recipient_name?.[0]}>
           <TextInput id="letter-recipient-name" name="recipient_name" required />
         </Field>
-        <Field label="Recipient address" htmlFor="letter-recipient-address" hint="Full postal address — house, street, city, postcode, country">
+        <Field label="Recipient address" htmlFor="letter-recipient-address" hint={state.errors?.recipient_address?.[0] ?? "Full postal address — house, street, city, postcode, country"}>
           <TextArea id="letter-recipient-address" name="recipient_address" required rows={4} />
         </Field>
       </fieldset>
 
-      <Field label="Choose a postcard" htmlFor="letter-postcard">
+      <Field label="Choose a postcard" htmlFor="letter-postcard" hint={state.errors?.postcard_choice?.[0]}>
         <select
           id="letter-postcard"
           name="postcard_choice"
@@ -64,7 +64,7 @@ export function LetterForm() {
         </select>
       </Field>
 
-      <Field label="Your message" htmlFor="letter-message" hint="We'll hand-write it onto the postcard.">
+      <Field label="Your message" htmlFor="letter-message" hint={state.errors?.message?.[0] ?? "We'll hand-write it onto the postcard."}>
         <TextArea id="letter-message" name="message" required rows={8} />
       </Field>
 

@@ -4,6 +4,7 @@ import { z } from "zod";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 import { isRazorpayConfigured, razorpayClient, verifyRazorpaySignature } from "@/lib/razorpay";
 import { SHIPPING_INR } from "@/lib/cart";
+import { PAPERS } from "@/lib/products";
 
 const cartItemSchema = z.object({
   slug: z.string().min(1),
@@ -11,7 +12,7 @@ const cartItemSchema = z.object({
   image: z.string().min(1),
   price_inr: z.number().int().nonnegative(),
   quantity: z.number().int().min(1).max(99),
-  paper: z.enum(["deluxe-300gsm", "textured-200gsm"]),
+  paper: z.enum(PAPERS),
 });
 
 const customerSchema = z.object({
@@ -150,7 +151,7 @@ export async function createPaymentSession(input: CreatePaymentInput): Promise<C
       mode: "razorpay",
       orderId,
       razorpay: {
-        keyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID ?? process.env.RAZORPAY_KEY_ID!,
+        keyId: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
         orderId: rpOrder.id,
         amount: typeof rpOrder.amount === "string" ? parseInt(rpOrder.amount, 10) : rpOrder.amount,
         currency: rpOrder.currency,
@@ -158,6 +159,8 @@ export async function createPaymentSession(input: CreatePaymentInput): Promise<C
     };
   } catch (err) {
     console.error("[checkout] razorpay order create failed", err);
+    // Cancel the pending order so it doesn't linger in the database.
+    await supabase.from("orders").update({ status: "cancelled" }).eq("id", orderId);
     return { ok: false, message: "Couldn't reach the payment provider. Please try again." };
   }
 }

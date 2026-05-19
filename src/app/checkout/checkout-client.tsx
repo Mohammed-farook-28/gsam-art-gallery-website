@@ -71,7 +71,7 @@ export function CheckoutClient({ razorpayConfigured }: { razorpayConfigured: boo
 
   if (ready && cart.length === 0) {
     return (
-      <section className="mx-auto max-w-[900px] px-6 md:px-10 pt-12 md:pt-20 pb-24">
+      <section className="mx-auto max-w-225 px-6 md:px-10 pt-12 md:pt-20 pb-24">
         <DisplaySans as="h1" className="text-[clamp(3rem,10vw,8rem)]">Checkout</DisplaySans>
         <p className="mt-8 font-script text-3xl text-ink/85">Your cart is empty.</p>
         <Link
@@ -159,7 +159,7 @@ export function CheckoutClient({ razorpayConfigured }: { razorpayConfigured: boo
       {/* Razorpay Checkout SDK loads only when needed. */}
       <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="lazyOnload" />
 
-      <section className="mx-auto max-w-[1200px] px-6 md:px-10 pt-12 md:pt-20 pb-24">
+      <section className="mx-auto max-w-300 px-6 md:px-10 pt-12 md:pt-20 pb-24">
         <DisplaySans as="h1" className="text-[clamp(3rem,10vw,8rem)]">Checkout</DisplaySans>
 
         {!razorpayConfigured && (
@@ -272,7 +272,7 @@ export function CheckoutClient({ razorpayConfigured }: { razorpayConfigured: boo
                   key={`${item.slug}__${item.paper}`}
                   className="flex gap-3 items-start text-sm"
                 >
-                  <div className="relative shrink-0 w-14 aspect-[3/4] bg-paper">
+                  <div className="relative shrink-0 w-14 aspect-3/4 bg-paper">
                     <Image
                       src={item.image}
                       alt=""

@@ -1,10 +1,11 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { DisplaySans } from "@/components/display";
 import { MusicStaffScript } from "@/components/music-staff-script";
 import { AirmailStripe } from "@/components/airmail-stripe";
 import { LetterForm } from "./letter-form";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "We post it for you — G.Sam Art Gallery",
   description:
     "Send us your message. We will write a postcard and post it for you. The joy of receiving a letter, brought back.",
@@ -16,7 +17,7 @@ export default function LettersPage() {
       <div className="h-20" />
 
       {/* HEADLINE */}
-      <section className="mx-auto max-w-[1366px] px-6 md:px-10 pt-12 md:pt-20">
+      <section className="mx-auto max-w-341.5 px-6 md:px-10 pt-12 md:pt-20">
         <p className="font-script text-2xl md:text-3xl text-ink/80">
           send us your message, we will write and
         </p>
@@ -28,7 +29,7 @@ export default function LettersPage() {
       <AirmailStripe className="mt-12" />
 
       {/* WHY THIS EXISTS + SAMPLE POSTCARD */}
-      <section className="mx-auto max-w-[1200px] px-6 md:px-10 py-16 md:py-24 grid gap-12 md:grid-cols-[1fr_1fr] items-center">
+      <section className="mx-auto max-w-300 px-6 md:px-10 py-16 md:py-24 grid gap-12 md:grid-cols-[1fr_1fr] items-center">
         <div className="max-w-prose text-base md:text-lg leading-relaxed text-ink/85">
           <p className="font-script text-2xl md:text-3xl text-ink/80">
             Experience the joy of writing a letter for your loved one,
@@ -58,7 +59,7 @@ export default function LettersPage() {
       </section>
 
       {/* SAMPLE LETTER */}
-      <section className="mx-auto max-w-[800px] px-6 md:px-10 py-16">
+      <section className="mx-auto max-w-200 px-6 md:px-10 py-16">
         <p className="font-serif text-sm uppercase tracking-[0.18em] text-muted">
           A letter we recently posted
         </p>
@@ -75,7 +76,7 @@ export default function LettersPage() {
       <AirmailStripe />
 
       {/* THE FORM */}
-      <section className="mx-auto max-w-[900px] px-6 md:px-10 py-20 md:py-28">
+      <section className="mx-auto max-w-225 px-6 md:px-10 py-20 md:py-28">
         <DisplaySans as="h2" className="text-5xl md:text-6xl">
           Write your letter.
         </DisplaySans>

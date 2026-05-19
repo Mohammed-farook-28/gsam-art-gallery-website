@@ -47,11 +47,11 @@ export function SiteHeader() {
         hidden
           ? "opacity-0 -translate-y-full pointer-events-none"
           : lightTreatment
-          ? "bg-gradient-to-b from-black/40 via-black/15 to-transparent text-paper"
+          ? "bg-linear-to-b from-black/40 via-black/15 to-transparent text-paper"
           : "bg-paper/90 backdrop-blur-md border-b border-rule text-ink",
       )}
     >
-      <div className="mx-auto max-w-[1366px] px-6 md:px-10 h-20 flex items-center justify-between gap-4">
+      <div className="mx-auto max-w-341.5 px-6 md:px-10 h-20 flex items-center justify-between gap-4">
         <Link
           href="/"
           aria-label="G.Sam Art Gallery — Home"

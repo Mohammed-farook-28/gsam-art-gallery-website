@@ -1,10 +1,11 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { DisplaySans } from "@/components/display";
 import { MusicStaffScript } from "@/components/music-staff-script";
 import { AirmailStripe } from "@/components/airmail-stripe";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "People — G.Sam Art Gallery",
   description:
     "Everyone is an artist. We share their stories. We share our profits. Their dreams become postcards.",
@@ -26,9 +27,9 @@ export default function PeoplePage() {
       <div className="h-20" />
 
       {/* HEADLINE */}
-      <section className="mx-auto max-w-[1366px] px-6 md:px-10 pt-12 md:pt-20">
+      <section className="mx-auto max-w-341.5 px-6 md:px-10 pt-12 md:pt-20">
         <DisplaySans as="h1" className="text-[clamp(2.5rem,8vw,7rem)]">
-          everyone is an artist,
+          Everyone is an artist,
         </DisplaySans>
         <p className="mt-3 text-base md:text-lg text-muted">
           We have been fooled by the world to think that we are not artists.
@@ -36,7 +37,7 @@ export default function PeoplePage() {
       </section>
 
       {/* 3-IMAGE STRIP */}
-      <section className="mx-auto max-w-[1366px] px-6 md:px-10 mt-10">
+      <section className="mx-auto max-w-341.5 px-6 md:px-10 mt-10">
         <div className="relative w-full">
           <Image
             src="/canva-extracts/Screenshot 2026-05-19 130049.png"
@@ -47,14 +48,14 @@ export default function PeoplePage() {
             className="w-full h-auto"
           />
         </div>
-        <p className="mt-4 text-right text-sm md:text-base font-script text-ink/70">
+        <p className="mt-4 text-right text-xl md:text-2xl font-script text-ink/70">
           what&apos;s your story?
         </p>
       </section>
 
       {/* TELL THE WORLD → POSTCARDS */}
-      <section className="mx-auto max-w-[1366px] px-6 md:px-10 py-20 md:py-28">
-        <p className="text-sm md:text-base font-script text-ink/80">tell the world…</p>
+      <section className="mx-auto max-w-341.5 px-6 md:px-10 py-20 md:py-28">
+        <p className="text-2xl md:text-3xl font-script text-ink/80">tell the world…</p>
         <div className="mt-2 flex flex-wrap items-end gap-x-6 gap-y-3">
           <DisplaySans className="text-[clamp(3.5rem,11vw,9.5rem)]">your story</DisplaySans>
           <span className="pb-4">
@@ -67,7 +68,7 @@ export default function PeoplePage() {
       <AirmailStripe />
 
       {/* PROFIT-SHARING MESSAGE + POSTCARD MOCKUP */}
-      <section className="mx-auto max-w-[1366px] px-6 md:px-10 py-16 md:py-24">
+      <section className="mx-auto max-w-341.5 px-6 md:px-10 py-16 md:py-24">
         <div className="grid gap-12 md:grid-cols-[1fr_2fr] items-center">
           <div className="max-w-prose text-base md:text-lg leading-relaxed text-ink/85">
             <p>
@@ -96,13 +97,13 @@ export default function PeoplePage() {
       </section>
 
       {/* PEOPLE'S STORE STORIES */}
-      <section className="mx-auto max-w-[1200px] px-6 md:px-10 pb-24">
+      <section className="mx-auto max-w-300 px-6 md:px-10 pb-24">
         <p className="font-script text-2xl md:text-3xl text-ink/80">People&apos;s</p>
         <DisplaySans as="h2" className="text-[clamp(2.5rem,8vw,7rem)] -mt-1">
           Store
         </DisplaySans>
         <div className="mt-10 grid gap-12 md:grid-cols-[1fr_1.4fr] items-start">
-          <div className="relative aspect-[3/4] w-full max-w-md">
+          <div className="relative aspect-3/4 w-full max-w-md">
             <Image
               src="/canva-extracts/Screenshot 2026-05-19 125014.png"
               alt="Mr. Krishnamoorthy portrait"

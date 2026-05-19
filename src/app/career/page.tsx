@@ -1,9 +1,10 @@
+import type { Metadata } from "next";
 import { DisplaySans } from "@/components/display";
 import { MusicStaffScript } from "@/components/music-staff-script";
 import { CareerForm } from "./career-form";
 import { VideoBg } from "@/components/video-bg";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Career — G.Sam Art Gallery",
   description:
     "Join us to be the change. Requirement: being human. Tell us why you chose us, your dreams and goals.",
@@ -13,7 +14,7 @@ export default function CareerPage() {
   return (
     <>
       <div className="h-20" />
-      <section className="mx-auto max-w-[1366px] px-6 md:px-10 pt-12 md:pt-20">
+      <section className="mx-auto max-w-341.5 px-6 md:px-10 pt-12 md:pt-20">
         <div className="flex flex-wrap items-end gap-x-6 gap-y-3">
           <DisplaySans as="h1" className="text-[clamp(4rem,16vw,14rem)]">
             Career
@@ -24,7 +25,7 @@ export default function CareerPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1200px] px-6 md:px-10 py-16 md:py-24 grid gap-16 md:grid-cols-[1fr_1.2fr] items-center">
+      <section className="mx-auto max-w-300 px-6 md:px-10 py-16 md:py-24 grid gap-16 md:grid-cols-[1fr_1.2fr] items-center">
         {/* Circular video — ocean / fish loop matching the G.Sam mandala motif */}
         <div className="relative aspect-square w-full max-w-md mx-auto overflow-hidden rounded-full bg-mandala">
           <VideoBg

@@ -1,8 +1,9 @@
+import type { Metadata } from "next";
 import { DisplaySans } from "@/components/display";
 import { MusicStaffScript } from "@/components/music-staff-script";
 import { ContactForm } from "./contact-form";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Get in touch — G.Sam Art Gallery",
   description: "Write to us. Every email is read.",
 };
@@ -11,10 +12,12 @@ export default function ContactPage() {
   return (
     <>
       <div className="h-20" />
-      <section className="mx-auto max-w-[900px] px-6 md:px-10 pt-12 md:pt-20 pb-24">
+      <div className="px-6 md:px-10 pt-12 md:pt-20">
         <DisplaySans as="h1" className="text-[clamp(3rem,10vw,8rem)]">
           Get in touch
         </DisplaySans>
+      </div>
+      <section className="mx-auto max-w-225 px-6 md:px-10 pb-24">
         <p className="mt-4">
           <MusicStaffScript size="md">we&apos;d love to hear from you.</MusicStaffScript>
         </p>

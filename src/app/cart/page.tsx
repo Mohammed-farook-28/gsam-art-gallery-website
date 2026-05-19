@@ -5,11 +5,15 @@ import Link from "next/link";
 import { useCart } from "@/components/cart-provider";
 import { DisplaySans } from "@/components/display";
 import { MusicStaffScript } from "@/components/music-staff-script";
-import { PAPER_LABELS } from "@/lib/products";
+import { AirmailStripe } from "@/components/airmail-stripe";
+import { PAPER_LABELS, SAMPLE_PRODUCTS } from "@/lib/products";
 import { lineTotal, SHIPPING_INR } from "@/lib/cart";
 
 export default function CartPage() {
   const { cart, ready, subtotal, updateQuantity, removeItem } = useCart();
+
+  const cartSlugs = new Set(cart.map((i) => i.slug));
+  const recommended = SAMPLE_PRODUCTS.filter((p) => !cartSlugs.has(p.slug));
 
   return (
     <>
@@ -41,7 +45,7 @@ export default function CartPage() {
                   key={`${item.slug}__${item.paper}`}
                   className="py-6 flex gap-4 md:gap-6 items-start"
                 >
-                  <div className="relative shrink-0 w-24 md:w-32 aspect-[3/4] bg-cream">
+                  <div className="relative shrink-0 w-24 md:w-32 aspect-3/4 bg-cream">
                     <Image
                       src={item.image}
                       alt={item.title}
@@ -128,6 +132,55 @@ export default function CartPage() {
           </div>
         )}
       </section>
+
+      {/* RECOMMENDED POSTCARDS */}
+      {ready && recommended.length > 0 && (
+        <>
+          <AirmailStripe />
+          <section className="mx-auto max-w-[1100px] px-6 md:px-10 py-16 md:py-24">
+            <p className="text-xs uppercase tracking-[0.22em] text-muted font-semibold">
+              You might also like
+            </p>
+            <MusicStaffScript size="md" className="mt-2 text-ink/80">
+              add another story to your parcel
+            </MusicStaffScript>
+
+            <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {recommended.map((p) => (
+                <li key={p.slug}>
+                  <Link href={`/store/${p.slug}`} className="group block">
+                    <div className="relative aspect-3/4 overflow-hidden bg-cream border border-rule/30">
+                      <Image
+                        src={p.image}
+                        alt={p.title}
+                        fill
+                        sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 100vw"
+                        className="object-contain p-4 transition-transform duration-500 group-hover:scale-[1.04]"
+                      />
+                    </div>
+                    <div className="mt-4 flex items-end justify-between gap-3">
+                      <div>
+                        <p className="font-script text-2xl text-ink/85 leading-tight">
+                          {p.title}
+                        </p>
+                        <p className="mt-1 text-xs uppercase tracking-[0.18em] text-muted">
+                          {p.size} · Postcard
+                        </p>
+                      </div>
+                      <p className="shrink-0 font-semibold text-base tabular-nums">
+                        ₹{p.price_inr}
+                      </p>
+                    </div>
+                    <span className="mt-3 inline-flex items-center gap-1 text-xs uppercase tracking-[0.18em] font-semibold border-b border-ink/40 pb-0.5 group-hover:border-ink transition-colors">
+                      View postcard →
+                    </span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </>
+      )}
     </>
   );
 }

@@ -46,8 +46,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     if (!ready) return;
     try {
       window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
-    } catch {
-      // ignore quota / privacy-mode errors
+    } catch (e) {
+      if (e instanceof Error && e.name === "QuotaExceededError") {
+        console.warn("[cart] localStorage quota exceeded — cart won't persist this session");
+      }
     }
   }, [cart, ready]);
 

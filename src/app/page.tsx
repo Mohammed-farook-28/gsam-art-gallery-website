@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <>
       {/* HERO — full-bleed video with text overlays recreated from Canva reference */}
-      <section className="relative w-full h-[100svh] min-h-[600px] overflow-hidden bg-ink">
+      <section className="relative w-full h-svh min-h-150 overflow-hidden bg-ink">
         <video
           className="absolute inset-0 w-full h-full object-cover"
           autoPlay
@@ -20,7 +20,7 @@ export default function HomePage() {
 
         {/* subtle dark scrim for text legibility */}
         <div className="absolute inset-0 bg-ink/15" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-paper/25" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-b from-transparent to-paper/25" />
 
         {/* Hero text overlay — two-row flex layout, equal padding on both sides */}
         <div className="absolute inset-0 hidden lg:flex flex-col justify-between px-[5%] pt-[10svh] pb-[8svh] pointer-events-none select-none">
@@ -103,7 +103,7 @@ export default function HomePage() {
       {/* INTRO — punchy paragraph + circular Why? photo */}
       <section
         id="intro"
-        className="mx-auto max-w-[1200px] px-6 md:px-10 py-24 md:py-32 grid gap-12 md:grid-cols-[1.4fr_1fr] items-center"
+        className="mx-auto max-w-300 px-6 md:px-10 py-24 md:py-32 grid gap-12 md:grid-cols-[1.4fr_1fr] items-center"
       >
         <div className="font-sans">
           <p className="text-2xl md:text-4xl leading-snug text-ink">
@@ -142,7 +142,7 @@ export default function HomePage() {
       </section>
 
       {/* TEASERS — 4 doors into the gallery */}
-      <section className="mx-auto max-w-[1366px] px-6 md:px-10 py-12 md:py-20">
+      <section className="mx-auto max-w-341.5 px-6 md:px-10 py-12 md:py-20">
         <h2 className="sr-only">Browse the gallery</h2>
         <ul className="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-4">
           <Teaser
@@ -179,7 +179,7 @@ export default function HomePage() {
       {/* CATEGORY STRIP — black bar mirroring the design */}
       <AirmailStripe className="mt-12" />
       <nav className="bg-ink text-paper">
-        <ul className="mx-auto max-w-[1366px] px-6 md:px-10 py-5 flex flex-wrap items-center gap-x-10 gap-y-3 uppercase tracking-[0.18em] text-xs">
+        <ul className="mx-auto max-w-341.5 px-6 md:px-10 py-5 flex flex-wrap items-center gap-x-10 gap-y-3 uppercase tracking-[0.18em] text-xs">
           <li><Link href="/store?category=postcards" className="hover:opacity-70">Postcards</Link></li>
           <li><Link href="/store?category=greeting-cards" className="hover:opacity-70">Greeting cards</Link></li>
           <li><Link href="/people" className="hover:opacity-70">People</Link></li>
@@ -219,7 +219,7 @@ function Teaser({
   return (
     <li>
       <Link href={href} className="group block">
-        <div className="relative aspect-[4/5] overflow-hidden bg-cream">
+        <div className="relative aspect-4/5 overflow-hidden bg-cream">
           <Image
             src={image}
             alt=""

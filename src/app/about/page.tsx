@@ -1,10 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { DisplaySerif } from "@/components/display";
 import { MusicStaffScript } from "@/components/music-staff-script";
 import { AirmailStripe } from "@/components/airmail-stripe";
 import { VideoBg } from "@/components/video-bg";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "About — G.Sam Art Gallery",
   description:
     "Why we exist: to empower lives, to capture the beauty of life, for a million dreams to stay alive.",
@@ -14,7 +15,7 @@ export default function AboutPage() {
   return (
     <>
       {/* VIDEO HERO — full-screen nature video with G.Sam / ART GALLERY overlay */}
-      <section className="relative w-full h-[100svh] min-h-[600px] overflow-hidden bg-ink">
+      <section className="relative w-full h-svh min-h-150 overflow-hidden bg-ink">
         <VideoBg
           src="/videos/hero.mp4"
           className="absolute inset-0 w-full h-full object-cover"
@@ -74,11 +75,11 @@ export default function AboutPage() {
             ART&nbsp;&nbsp;GALLERY
           </span>
         </div>
-        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-paper" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-linear-to-b from-transparent to-paper" />
       </section>
 
       {/* INTRO — same paragraph as on the Home page in Canva */}
-      <section className="mx-auto max-w-[1200px] px-6 md:px-10 pt-16 md:pt-24 grid gap-12 md:grid-cols-[1.4fr_1fr] items-center">
+      <section className="mx-auto max-w-300 px-6 md:px-10 pt-16 md:pt-24 grid gap-12 md:grid-cols-[1.4fr_1fr] items-center">
         <div>
           <p className="text-3xl md:text-5xl leading-tight text-ink">
             Gsam art gallery is for every human,{" "}
@@ -110,7 +111,7 @@ export default function AboutPage() {
       </section>
 
       {/* MEGA WHY? — stacked so descender of "y" never touches the script line */}
-      <section className="mx-auto max-w-[1366px] px-6 md:px-10 py-20 md:py-32">
+      <section className="mx-auto max-w-341.5 px-6 md:px-10 py-20 md:py-32">
         <div className="flex flex-col">
           <DisplaySerif as="h1" className="text-[clamp(8rem,22vw,22rem)] leading-none">
             Why?
@@ -124,7 +125,7 @@ export default function AboutPage() {
       </section>
 
       {/* VISION + MISSION — two columns */}
-      <section className="mx-auto max-w-[1200px] px-6 md:px-10 pb-24 grid gap-12 md:gap-16 md:grid-cols-2">
+      <section className="mx-auto max-w-300 px-6 md:px-10 pb-24 grid gap-12 md:gap-16 md:grid-cols-2">
         <article>
           <DisplaySerif as="h2" className="text-6xl md:text-7xl">Our Vision</DisplaySerif>
           <p className="mt-6 text-base md:text-lg leading-relaxed text-ink/85">

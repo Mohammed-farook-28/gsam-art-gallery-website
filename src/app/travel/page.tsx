@@ -1,10 +1,11 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { DisplaySans } from "@/components/display";
 import { AirmailStripe } from "@/components/airmail-stripe";
 import { RetreatSignupForm } from "./retreat-signup-form";
 import { VideoBg } from "@/components/video-bg";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Travel + Art Experience — G.Sam Art Gallery",
   description:
     "An immersive seven-day art retreat in Thailand. City. Village. Mountain. Reconnect with your creativity.",
@@ -14,7 +15,7 @@ export default function TravelPage() {
   return (
     <>
       {/* HERO — new video with paper-tear mask and reference text layout */}
-      <section className="relative w-full h-[100svh] min-h-[600px] overflow-hidden bg-paper">
+      <section className="relative w-full h-svh min-h-150 overflow-hidden bg-paper">
         <VideoBg
           src="/videos/travel-experience.mp4"
           className="absolute inset-0 w-full h-full object-cover"
@@ -24,7 +25,7 @@ export default function TravelPage() {
 
         {/* "Travel + Art" — dark, upper-center */}
         <div className="absolute inset-x-0 top-[38%] flex justify-center px-[5%]">
-          <span className="font-sans font-black text-ink text-2xl md:text-3xl tracking-wide drop-shadow-sm">
+          <span className="font-sans font-black text-white text-3xl md:text-4xl tracking-wide drop-shadow-sm">
             Travel + Art
           </span>
         </div>
@@ -62,7 +63,7 @@ export default function TravelPage() {
       </section>
 
       {/* BLURB */}
-      <section className="mx-auto max-w-[900px] px-6 md:px-10 py-12 md:py-16">
+      <section className="mx-auto max-w-225 px-6 md:px-10 py-12 md:py-16">
         <p className="text-base md:text-lg leading-relaxed text-ink/85">
           We have developed an international travel + art experience where artists travel,
           experience a new culture, and create work through{" "}
@@ -72,7 +73,7 @@ export default function TravelPage() {
       </section>
 
       {/* UPCOMING — Thailand. Video with overlaid heading, Thai script, and description. */}
-      <section className="mx-auto max-w-[1366px] px-6 md:px-10">
+      <section className="mx-auto max-w-341.5 px-6 md:px-10">
         <h2 className="font-sans font-black text-[clamp(2rem,5vw,4rem)] uppercase leading-tight mb-6">
           Upcoming International experience
         </h2>
@@ -121,11 +122,11 @@ export default function TravelPage() {
       </section>
 
       {/* SAWADEE KHAP — Thai greeting text + circular video of waterfall on right */}
-      <section className="mx-auto max-w-[1366px] px-6 md:px-10 py-16 md:py-24">
+      <section className="mx-auto max-w-341.5 px-6 md:px-10 py-16 md:py-24">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr] items-center">
           <div>
             <h2 className="font-thai-display text-[clamp(3rem,9vw,8rem)] leading-tight text-ink">
-              สวัสดี ครับ
+              Sawasdee khrap
             </h2>
             <p className="mt-6 text-base md:text-lg leading-relaxed text-ink/85 max-w-prose">
               The Thailand Art Retreat is a seven-day immersive journey designed for artists
@@ -167,7 +168,7 @@ export default function TravelPage() {
       <AirmailStripe />
 
       {/* SIGN-UP FORM */}
-      <section id="sign-up" className="mx-auto max-w-[800px] px-6 md:px-10 py-20 md:py-28">
+      <section id="sign-up" className="mx-auto max-w-200 px-6 md:px-10 py-20 md:py-28">
         <DisplaySans as="h2" className="text-5xl md:text-6xl">
           Reserve a seat.
         </DisplaySans>

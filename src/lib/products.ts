@@ -1,7 +1,8 @@
 // Product types + sample data. Pure module — safe to import from client
 // components. Server-only fetchers live in `products-server.ts`.
 
-export type Paper = "deluxe-300gsm" | "textured-200gsm";
+export const PAPERS = ["deluxe-300gsm", "textured-200gsm"] as const;
+export type Paper = (typeof PAPERS)[number];
 
 export type Product = {
   slug: string;

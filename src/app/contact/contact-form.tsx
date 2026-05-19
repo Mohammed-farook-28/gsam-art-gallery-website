@@ -18,14 +18,14 @@ export function ContactForm() {
   return (
     <form action={formAction} className="space-y-8">
       <div className="grid gap-8 md:grid-cols-2">
-        <Field label="Your name" htmlFor="contact-name">
+        <Field label="Your name" htmlFor="contact-name" hint={state.errors?.name?.[0]}>
           <TextInput id="contact-name" name="name" required autoComplete="name" />
         </Field>
-        <Field label="Email" htmlFor="contact-email">
+        <Field label="Email" htmlFor="contact-email" hint={state.errors?.email?.[0]}>
           <TextInput id="contact-email" name="email" type="email" required autoComplete="email" />
         </Field>
       </div>
-      <Field label="Message" htmlFor="contact-message">
+      <Field label="Message" htmlFor="contact-message" hint={state.errors?.message?.[0]}>
         <TextArea id="contact-message" name="message" required rows={6} />
       </Field>
       {state.message && !state.ok && <p className="text-sm text-airmail-red">{state.message}</p>}

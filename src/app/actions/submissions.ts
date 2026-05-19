@@ -42,13 +42,20 @@ export async function submitContact(_: FormState, formData: FormData): Promise<F
 }
 
 // ---------- LETTERS ("we post it for you") ----------
+const VALID_POSTCARD_CHOICES = [
+  "brihadeeshwarar-temple",
+  "still-pond",
+  "open-letter",
+  "we-pick",
+] as const;
+
 const letterSchema = z.object({
   sender_name: z.string().min(1),
   sender_email: z.string().email(),
   recipient_name: z.string().min(1),
   recipient_address: z.string().min(10, "We need a complete postal address."),
   message: z.string().min(1, "Please write a message."),
-  postcard_choice: z.string().min(1),
+  postcard_choice: z.enum(VALID_POSTCARD_CHOICES, { error: "Please choose a valid postcard." }),
 });
 
 export async function submitLetter(_: FormState, formData: FormData): Promise<FormState> {
