@@ -72,11 +72,11 @@ export function SiteHeader() {
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex flex-col gap-[5px] p-2"
+            className="inline-flex flex-col gap-1.25 p-2"
           >
-            <span className="block w-6 h-[2px] bg-current" />
-            <span className="block w-6 h-[2px] bg-current" />
-            <span className="block w-6 h-[2px] bg-current" />
+            <span className="block w-6 h-0.5 bg-current" />
+            <span className="block w-6 h-0.5 bg-current" />
+            <span className="block w-6 h-0.5 bg-current" />
           </button>
         </div>
 
@@ -92,7 +92,7 @@ export function SiteHeader() {
                   className={cn(
                     "relative py-1 hover:opacity-70 transition-opacity whitespace-nowrap",
                     active &&
-                      "after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-1 after:h-[2px] after:bg-current",
+                      "after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-1 after:h-0.5 after:bg-current",
                   )}
                 >
                   {item.label}

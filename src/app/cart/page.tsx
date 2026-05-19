@@ -18,7 +18,7 @@ export default function CartPage() {
   return (
     <>
       <div className="h-20" />
-      <section className="mx-auto max-w-[1100px] px-6 md:px-10 pt-12 md:pt-20 pb-24">
+      <section className="mx-auto max-w-275 px-6 md:px-10 pt-12 md:pt-20 pb-24">
         <DisplaySans as="h1" className="text-[clamp(3rem,10vw,8rem)]">Cart</DisplaySans>
         <p className="mt-3">
           <MusicStaffScript size="md">a parcel taking shape, one postcard at a time.</MusicStaffScript>
@@ -137,7 +137,7 @@ export default function CartPage() {
       {ready && recommended.length > 0 && (
         <>
           <AirmailStripe />
-          <section className="mx-auto max-w-[1100px] px-6 md:px-10 py-16 md:py-24">
+          <section className="mx-auto max-w-275 px-6 md:px-10 py-16 md:py-24">
             <p className="text-xs uppercase tracking-[0.22em] text-muted font-semibold">
               You might also like
             </p>

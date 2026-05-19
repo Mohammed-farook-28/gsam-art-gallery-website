@@ -254,7 +254,7 @@ function CategoryTab({
       scroll={false}
       className={
         active
-          ? "py-2 border-b-2 border-ink -mb-[17px]"
+          ? "py-2 border-b-2 border-ink -mb-4.25"
           : "py-2 opacity-60 hover:opacity-100"
       }
     >

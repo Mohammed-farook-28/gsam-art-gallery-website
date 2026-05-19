@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Params }) {
 export default async function ProductPage({ params }: { params: Params }) {
   const { slug } = await params;
   const product = await findProduct(slug);
-  if (!product) notFound();
+  if (!product) return notFound();
 
   const all = await listProducts();
   const idx = all.findIndex((p) => p.slug === slug);
@@ -55,7 +55,7 @@ export default async function ProductPage({ params }: { params: Params }) {
         <div className="grid gap-10 lg:gap-16 lg:grid-cols-[1.1fr_1fr] items-start">
           {/* PRODUCT IMAGE — cream paper panel with arrows */}
           <div className="relative bg-cream p-6 md:p-12 aspect-4/5 flex items-center justify-center">
-            <div className="relative w-full max-w-[460px] aspect-3/4">
+            <div className="relative w-full max-w-115 aspect-3/4">
               <Image
                 src={product.image}
                 alt={product.title}
@@ -87,7 +87,7 @@ export default async function ProductPage({ params }: { params: Params }) {
             <h1 className="font-script text-5xl md:text-6xl leading-tight text-ink">
               {product.title}
             </h1>
-            <div className="mt-2 h-3 music-staff opacity-60" aria-hidden />
+            <div className="mt-2 h-3 music-staff opacity-60" aria-hidden="true" />
             <div className="mt-8 flex items-baseline gap-3">
               <p className="font-sans font-bold uppercase tracking-[0.18em] text-base">
                 Postcard
@@ -144,9 +144,9 @@ export default async function ProductPage({ params }: { params: Params }) {
                         ₹{p.price_inr}
                       </p>
                     </div>
-                    <span className="mt-3 inline-flex items-center gap-1 text-xs uppercase tracking-[0.18em] font-semibold border-b border-ink/40 pb-0.5 group-hover:border-ink transition-colors">
+                    <p className="mt-3 inline-flex items-center gap-1 text-xs uppercase tracking-[0.18em] font-semibold border-b border-ink/40 pb-0.5 group-hover:border-ink transition-colors">
                       View postcard →
-                    </span>
+                    </p>
                   </Link>
                 </li>
               ))}

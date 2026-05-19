@@ -77,7 +77,7 @@ export default function TravelPage() {
         <h2 className="font-sans font-black text-[clamp(2rem,5vw,4rem)] uppercase leading-tight mb-6">
           Upcoming International experience
         </h2>
-        <div className="relative aspect-[2732/1300] w-full overflow-hidden bg-ink">
+        <div className="relative aspect-2732/1300 w-full overflow-hidden bg-ink">
           <Image
             src="/canva-extracts/thailand-scene.jpg"
             alt="Thailand landscape"
@@ -99,7 +99,7 @@ export default function TravelPage() {
           </div>
 
           {/* CITY · VILLAGE · MOUNTAIN + description in Futura/Jost — right */}
-          <div className="absolute inset-y-0 right-0 flex flex-col justify-center p-6 md:p-10 max-w-[360px] text-right">
+          <div className="absolute inset-y-0 right-0 flex flex-col justify-center p-6 md:p-10 max-w-90 text-right">
             <p className="font-futura font-bold text-white text-xs md:text-sm tracking-[0.2em] drop-shadow uppercase">
               CITY · VILLAGE · MOUNTAIN
             </p>

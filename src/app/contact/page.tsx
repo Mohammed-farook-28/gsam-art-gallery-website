@@ -12,7 +12,7 @@ export default function ContactPage() {
   return (
     <>
       <div className="h-20" />
-      <div className="px-6 md:px-10 pt-12 md:pt-20">
+      <div className="pl-16 md:pl-24 pr-6 md:pr-10 pt-12 md:pt-20">
         <DisplaySans as="h1" className="text-[clamp(3rem,10vw,8rem)]">
           Get in touch
         </DisplaySans>
