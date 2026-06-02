@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { MusicStaffScript } from "@/components/music-staff-script";
 import { AirmailStripe } from "@/components/airmail-stripe";
+import { cn } from "@/lib/cn";
+import { AnimateIn, StaggerIn, StaggerItem } from "@/components/animate-in";
 
 export default function HomePage() {
   return (
@@ -101,51 +103,54 @@ export default function HomePage() {
       </section>
 
       {/* INTRO — punchy paragraph + circular Why? photo */}
-      <section
-        id="intro"
-        className="mx-auto max-w-300 px-6 md:px-10 py-24 md:py-32 grid gap-12 md:grid-cols-[1.4fr_1fr] items-center"
-      >
-        <div className="font-sans">
-          <p className="text-2xl md:text-4xl leading-snug text-ink">
-            Gsam art gallery is for every human,{" "}
-            <span className="font-semibold">a place where emotions connects</span> and{" "}
-            <span className="font-semibold">stories inspire you</span> in the form of art.
-          </p>
-          <p className="mt-8 text-sm md:text-base text-muted leading-relaxed max-w-prose">
-            Gsam art gallery is one of the firsts. A unique space dedicated to embrace every
-            soul, to create a permanent collection of their memories, to collect emotions, to
-            create a way to connect with other humans, to capture the journey of life in this
-            World. Gsam art gallery have found home for 200+ works of art.
-          </p>
-          <Link
-            href="/about"
-            className="mt-10 inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] font-semibold border-b border-ink pb-1 hover:opacity-70"
-          >
-            Read our why →
-          </Link>
-        </div>
+      <AnimateIn>
+        <section
+          id="intro"
+          className="mx-auto max-w-300 px-6 md:px-10 py-24 md:py-32 grid gap-12 md:grid-cols-[1.4fr_1fr] items-center"
+        >
+          <div className="font-sans">
+            <p className="text-2xl md:text-4xl leading-snug text-ink">
+              Gsam art gallery is for every human,{" "}
+              <span className="font-semibold">a place where emotions connects</span> and{" "}
+              <span className="font-semibold">stories inspire you</span> in the form of art.
+            </p>
+            <p className="mt-8 text-sm md:text-base text-muted leading-relaxed max-w-prose">
+              Gsam art gallery is one of the firsts. A unique space dedicated to embrace every
+              soul, to create a permanent collection of their memories, to collect emotions, to
+              create a way to connect with other humans, to capture the journey of life in this
+              World. Gsam art gallery have found home for 200+ works of art.
+            </p>
+            <Link
+              href="/about"
+              className="mt-10 inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] font-semibold border-b border-ink pb-1 hover:opacity-70"
+            >
+              Read our why →
+            </Link>
+          </div>
 
-        <div className="relative aspect-square w-full max-w-md mx-auto rounded-full overflow-hidden">
-          <video
-            className="absolute inset-0 w-full h-full object-cover grayscale"
-            autoPlay
-            muted
-            loop
-            playsInline
-          >
-            <source src="/videos/why-circle.mp4" type="video/mp4" />
-          </video>
+          <div className="relative aspect-square w-full max-w-md mx-auto rounded-full overflow-hidden">
+            <video
+              className="absolute inset-0 w-full h-full object-cover grayscale"
+              autoPlay
+              muted
+              loop
+              playsInline
+            >
+              <source src="/videos/why-circle.mp4" type="video/mp4" />
+            </video>
           <span className="absolute inset-0 flex items-center justify-center">
-            <MusicStaffScript size="xl" className="text-paper drop-shadow">Why?</MusicStaffScript>
+            <span className="font-futura font-bold text-paper drop-shadow-lg text-6xl md:text-8xl leading-none">Why?</span>
           </span>
-        </div>
-      </section>
+          </div>
+        </section>
+      </AnimateIn>
 
       {/* TEASERS — 4 doors into the gallery */}
-      <section className="mx-auto max-w-341.5 px-6 md:px-10 py-12 md:py-20">
-        <h2 className="sr-only">Browse the gallery</h2>
-        <ul className="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <Teaser
+      <AnimateIn>
+        <section className="mx-auto max-w-341.5 px-6 md:px-10 py-12 md:py-20">
+          <h2 className="sr-only">Browse the gallery</h2>
+          <ul className="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-4">
+            <Teaser
             href="/store"
             kicker="Store"
             title="Postcards"
@@ -165,6 +170,7 @@ export default function HomePage() {
             title="Thailand"
             tagline="City · Village · Mountain."
             image="/canva-extracts/travel-mountains-hero.jpg"
+            titleClassName="font-thai-display"
           />
           <Teaser
             href="/letters"
@@ -175,6 +181,7 @@ export default function HomePage() {
           />
         </ul>
       </section>
+      </AnimateIn>
 
       {/* CATEGORY STRIP — black bar mirroring the design */}
       <AirmailStripe className="mt-12" />
@@ -189,16 +196,18 @@ export default function HomePage() {
       </nav>
 
       {/* TEMPLE / ART GALLERY closer */}
-      <section className="bg-ink text-paper">
-        <Image
-          src="/canva-extracts/345.png"
-          alt="Brihadeeshwarar temple — pen and ink"
-          width={0}
-          height={0}
-          sizes="100vw"
-          className="w-full h-auto opacity-90"
-        />
-      </section>
+      <AnimateIn>
+        <section className="bg-ink text-paper">
+          <Image
+            src="/canva-extracts/345.png"
+            alt="Brihadeeshwarar temple — pen and ink"
+            width={0}
+            height={0}
+            sizes="100vw"
+            className="w-full h-auto opacity-90"
+          />
+        </section>
+      </AnimateIn>
     </>
   );
 }
@@ -209,12 +218,14 @@ function Teaser({
   title,
   tagline,
   image,
+  titleClassName,
 }: {
   href: string;
   kicker: string;
   title: string;
   tagline: string;
   image: string;
+  titleClassName?: string;
 }) {
   return (
     <li>
@@ -229,7 +240,7 @@ function Teaser({
           />
         </div>
         <p className="mt-4 text-[0.7rem] uppercase tracking-[0.22em] text-muted">{kicker}</p>
-        <p className="mt-1 font-sans font-black text-3xl leading-tight">{title}</p>
+        <p className={cn("mt-1 font-sans font-black text-3xl leading-tight", titleClassName)}>{title}</p>
         <p className="mt-1 font-script text-xl leading-tight text-ink/70">{tagline}</p>
       </Link>
     </li>

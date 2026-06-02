@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DisplaySans } from "@/components/display";
 import { MusicStaffScript } from "@/components/music-staff-script";
 import { ContactForm } from "./contact-form";
+import { AnimateIn } from "@/components/animate-in";
 
 export const metadata: Metadata = {
   title: "Get in touch — G.Sam Art Gallery",
@@ -17,6 +18,7 @@ export default function ContactPage() {
           Get in touch
         </DisplaySans>
       </div>
+      <AnimateIn>
       <section className="mx-auto max-w-225 px-6 md:px-10 pb-24">
         <p className="mt-4">
           <MusicStaffScript size="md">we&apos;d love to hear from you.</MusicStaffScript>
@@ -36,6 +38,7 @@ export default function ContactPage() {
           </a>
         </div>
       </section>
+      </AnimateIn>
     </>
   );
 }

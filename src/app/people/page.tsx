@@ -4,6 +4,7 @@ import Link from "next/link";
 import { DisplaySans } from "@/components/display";
 import { MusicStaffScript } from "@/components/music-staff-script";
 import { AirmailStripe } from "@/components/airmail-stripe";
+import { AnimateIn } from "@/components/animate-in";
 
 export const metadata: Metadata = {
   title: "People — G.Sam Art Gallery",
@@ -37,6 +38,7 @@ export default function PeoplePage() {
       </section>
 
       {/* 3-IMAGE STRIP */}
+      <AnimateIn>
       <section className="mx-auto max-w-341.5 px-6 md:px-10 mt-10">
         <div className="relative w-full">
           <Image
@@ -52,8 +54,10 @@ export default function PeoplePage() {
           what&apos;s your story?
         </p>
       </section>
+      </AnimateIn>
 
       {/* TELL THE WORLD → POSTCARDS */}
+      <AnimateIn>
       <section className="mx-auto max-w-341.5 px-6 md:px-10 py-20 md:py-28">
         <p className="text-2xl md:text-3xl font-script text-ink/80">tell the world…</p>
         <div className="mt-2 flex flex-wrap items-end gap-x-6 gap-y-3">
@@ -64,10 +68,12 @@ export default function PeoplePage() {
           <DisplaySans className="text-[clamp(3.5rem,11vw,9.5rem)]">postcards</DisplaySans>
         </div>
       </section>
+      </AnimateIn>
 
       <AirmailStripe />
 
       {/* PROFIT-SHARING MESSAGE + POSTCARD MOCKUP */}
+      <AnimateIn>
       <section className="mx-auto max-w-341.5 px-6 md:px-10 py-16 md:py-24">
         <div className="grid gap-12 md:grid-cols-[1fr_2fr] items-center">
           <div className="max-w-prose text-base md:text-lg leading-relaxed text-ink/85">
@@ -95,8 +101,10 @@ export default function PeoplePage() {
           </div>
         </div>
       </section>
+      </AnimateIn>
 
       {/* PEOPLE'S STORE STORIES */}
+      <AnimateIn>
       <section className="mx-auto max-w-300 px-6 md:px-10 pb-24">
         <p className="font-script text-2xl md:text-3xl text-ink/80">People&apos;s</p>
         <DisplaySans as="h2" className="text-[clamp(2.5rem,8vw,7rem)] -mt-1">
@@ -134,6 +142,7 @@ export default function PeoplePage() {
           </ul>
         </div>
       </section>
+      </AnimateIn>
     </>
   );
 }

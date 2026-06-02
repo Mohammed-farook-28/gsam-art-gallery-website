@@ -4,6 +4,7 @@ import { DisplaySans } from "@/components/display";
 import { AirmailStripe } from "@/components/airmail-stripe";
 import { RetreatSignupForm } from "./retreat-signup-form";
 import { VideoBg } from "@/components/video-bg";
+import { AnimateIn } from "@/components/animate-in";
 
 export const metadata: Metadata = {
   title: "Travel + Art Experience — G.Sam Art Gallery",
@@ -63,6 +64,7 @@ export default function TravelPage() {
       </section>
 
       {/* BLURB */}
+      <AnimateIn>
       <section className="mx-auto max-w-225 px-6 md:px-10 py-12 md:py-16">
         <p className="text-base md:text-lg leading-relaxed text-ink/85">
           We have developed an international travel + art experience where artists travel,
@@ -71,8 +73,10 @@ export default function TravelPage() {
           help artists reconnect with their creativity.
         </p>
       </section>
+      </AnimateIn>
 
       {/* UPCOMING — Thailand. Video with overlaid heading, Thai script, and description. */}
+      <AnimateIn>
       <section className="mx-auto max-w-341.5 px-6 md:px-10">
         <h2 className="font-sans font-black text-[clamp(2rem,5vw,4rem)] uppercase leading-tight mb-6">
           Upcoming International experience
@@ -120,8 +124,10 @@ export default function TravelPage() {
           expressing themselves.
         </p>
       </section>
+      </AnimateIn>
 
       {/* SAWADEE KHAP — Thai greeting text + circular video of waterfall on right */}
+      <AnimateIn>
       <section className="mx-auto max-w-341.5 px-6 md:px-10 py-16 md:py-24">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr] items-center">
           <div>
@@ -164,10 +170,12 @@ export default function TravelPage() {
           </div>
         </div>
       </section>
+      </AnimateIn>
 
       <AirmailStripe />
 
       {/* SIGN-UP FORM */}
+      <AnimateIn>
       <section id="sign-up" className="mx-auto max-w-200 px-6 md:px-10 py-20 md:py-28">
         <DisplaySans as="h2" className="text-5xl md:text-6xl">
           Reserve a seat.
@@ -179,6 +187,7 @@ export default function TravelPage() {
           <RetreatSignupForm />
         </div>
       </section>
+      </AnimateIn>
     </>
   );
 }

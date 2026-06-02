@@ -4,6 +4,7 @@ import { DisplaySans } from "@/components/display";
 import { MusicStaffScript } from "@/components/music-staff-script";
 import { AirmailStripe } from "@/components/airmail-stripe";
 import { LetterForm } from "./letter-form";
+import { AnimateIn } from "@/components/animate-in";
 
 export const metadata: Metadata = {
   title: "We post it for you — G.Sam Art Gallery",
@@ -29,6 +30,7 @@ export default function LettersPage() {
       <AirmailStripe className="mt-12" />
 
       {/* WHY THIS EXISTS + SAMPLE POSTCARD */}
+      <AnimateIn>
       <section className="mx-auto max-w-300 px-6 md:px-10 py-16 md:py-24 grid gap-12 md:grid-cols-[1fr_1fr] items-center">
         <div className="max-w-prose text-base md:text-lg leading-relaxed text-ink/85">
           <p className="font-script text-2xl md:text-3xl text-ink/80">
@@ -57,8 +59,10 @@ export default function LettersPage() {
           />
         </div>
       </section>
+      </AnimateIn>
 
       {/* SAMPLE LETTER */}
+      <AnimateIn>
       <section className="mx-auto max-w-200 px-6 md:px-10 py-16">
         <p className="font-serif text-sm uppercase tracking-[0.18em] text-muted">
           A letter we recently posted
@@ -72,10 +76,12 @@ export default function LettersPage() {
           <p className="mt-3 not-italic font-script text-2xl">With love, Amma &amp; Appa.</p>
         </blockquote>
       </section>
+      </AnimateIn>
 
       <AirmailStripe />
 
       {/* THE FORM */}
+      <AnimateIn>
       <section className="mx-auto max-w-225 px-6 md:px-10 py-20 md:py-28">
         <DisplaySans as="h2" className="text-5xl md:text-6xl">
           Write your letter.
@@ -87,6 +93,7 @@ export default function LettersPage() {
           <LetterForm />
         </div>
       </section>
+      </AnimateIn>
     </>
   );
 }

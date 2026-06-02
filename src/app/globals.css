@@ -11,7 +11,7 @@
   --color-muted: #6b6b6b;
   --color-rule: #d4d4d4;
 
-  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-futura), "Futura", "Century Gothic", sans-serif;
   --font-serif: var(--font-serif), ui-serif, Georgia, serif;
   --font-script: var(--font-script), cursive;
   --font-script-hero: var(--font-script-hero), cursive;

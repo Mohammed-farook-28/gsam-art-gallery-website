@@ -6,6 +6,7 @@ import { MusicStaffScript } from "@/components/music-staff-script";
 import { AirmailStripe } from "@/components/airmail-stripe";
 import { listProducts } from "@/lib/products-server";
 import { VideoBg } from "@/components/video-bg";
+import { AnimateIn } from "@/components/animate-in";
 
 export const metadata: Metadata = {
   title: "Store — G.Sam Art Gallery",
@@ -131,6 +132,7 @@ export default async function StorePage({ searchParams }: { searchParams: Search
       </nav>
 
       {/* PRODUCT GRID */}
+      <AnimateIn>
       <section className="mx-auto max-w-341.5 px-6 md:px-10 py-12 md:py-16">
         <ul className="grid gap-10 md:gap-12 sm:grid-cols-2 lg:grid-cols-3">
           {products.map((p) => (
@@ -154,8 +156,10 @@ export default async function StorePage({ searchParams }: { searchParams: Search
           ))}
         </ul>
       </section>
+      </AnimateIn>
 
       {/* SPOTLIGHT */}
+      <AnimateIn>
       <section className="mx-auto max-w-341.5 px-6 md:px-10 py-16 md:py-24">
         <div className="flex flex-wrap items-end gap-x-6 gap-y-3">
           <DisplaySans as="h2" className="text-[clamp(3rem,10vw,8rem)]">Spotlight</DisplaySans>
@@ -179,10 +183,12 @@ export default async function StorePage({ searchParams }: { searchParams: Search
           art gallery, <strong className="font-semibold">every art has a story.</strong>
         </p>
       </section>
+      </AnimateIn>
 
       <AirmailStripe />
 
       {/* PEOPLE'S STORE TEASER */}
+      <AnimateIn>
       <section className="mx-auto max-w-300 px-6 md:px-10 py-20 md:py-28 grid gap-12 md:grid-cols-[1fr_1.4fr] items-center">
         <div className="relative aspect-3/4 w-full max-w-md">
           <Image
@@ -208,10 +214,12 @@ export default async function StorePage({ searchParams }: { searchParams: Search
           </Link>
         </div>
       </section>
+      </AnimateIn>
 
       <AirmailStripe />
 
       {/* SEND A LETTER CTA */}
+      <AnimateIn>
       <section className="mx-auto max-w-300 px-6 md:px-10 py-20 md:py-28 grid gap-12 md:grid-cols-[1.4fr_1fr] items-center">
         <div>
           <p className="font-script text-2xl md:text-3xl text-ink/80">
@@ -235,6 +243,7 @@ export default async function StorePage({ searchParams }: { searchParams: Search
           />
         </div>
       </section>
+      </AnimateIn>
     </>
   );
 }

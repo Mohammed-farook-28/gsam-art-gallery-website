@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 import { CartIcon } from "@/components/cart-icon";
 
@@ -20,7 +21,7 @@ const NAV_ITEMS = [
 // top of these pages, the header rides over the photo with light text and a
 // faint scrim. After scrolling past the hero, it switches to the standard
 // solid white treatment.
-const DARK_HERO_ROUTES = new Set(["/", "/travel"]);
+const DARK_HERO_ROUTES = new Set(["/", "/about", "/travel"]);
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -41,7 +42,10 @@ export function SiteHeader() {
   const hidden = pathname === "/" && !scrolled;
 
   return (
-    <header
+    <motion.header
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
       className={cn(
         "fixed top-0 inset-x-0 z-50 transition-all duration-500",
         hidden
@@ -51,7 +55,7 @@ export function SiteHeader() {
           : "bg-paper/90 backdrop-blur-md border-b border-rule text-ink",
       )}
     >
-      <div className="mx-auto max-w-341.5 px-6 md:px-10 h-20 flex items-center justify-between gap-4">
+      <div className="mx-auto max-w-341.5 px-6 md:px-10 h-20 flex items-center justify-between gap-4 md:gap-x-12 lg:gap-x-20">
         <Link
           href="/"
           aria-label="G.Sam Art Gallery — Home"
@@ -128,6 +132,6 @@ export function SiteHeader() {
           </nav>
         </div>
       )}
-    </header>
+      </motion.header>
   );
 }

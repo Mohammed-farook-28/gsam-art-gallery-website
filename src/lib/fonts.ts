@@ -1,10 +1,5 @@
-import { Inter, Fraunces, Allura, Pinyon_Script, Charm, Noto_Sans_Thai, Jost } from "next/font/google";
-
-export const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-});
+import { Fraunces, Noto_Sans_Thai, Pinyon_Script } from "next/font/google";
+import localFont from "next/font/local";
 
 export const fraunces = Fraunces({
   subsets: ["latin"],
@@ -13,9 +8,14 @@ export const fraunces = Fraunces({
   axes: ["opsz", "SOFT", "WONK"],
 });
 
-export const allura = Allura({
-  subsets: ["latin"],
-  weight: "400",
+export const notoSansThai = Noto_Sans_Thai({
+  subsets: ["thai"],
+  variable: "--font-thai",
+  display: "swap",
+});
+
+export const themysion = localFont({
+  src: "../../font_name/themysion/Themysion-2OjKo.ttf",
   variable: "--font-script-hero",
   display: "swap",
 });
@@ -27,31 +27,30 @@ export const pinyon = Pinyon_Script({
   display: "swap",
 });
 
-export const charm = Charm({
-  subsets: ["latin", "thai"],
-  weight: ["400", "700"],
+export const awSiamEnglish = localFont({
+  src: "../../font_name/aw-siam-english-not-thai/AW_Siam.ttf",
   variable: "--font-thai-display",
   display: "swap",
 });
 
-export const notoSansThai = Noto_Sans_Thai({
-  subsets: ["thai"],
-  variable: "--font-thai",
-  display: "swap",
-});
-
-export const jost = Jost({
-  subsets: ["latin"],
+export const futura = localFont({
+  src: [
+    { path: "../../font_name/futura-pt/FuturaCyrillicBook.ttf", weight: "400", style: "normal" },
+    { path: "../../font_name/futura-pt/FuturaCyrillicMedium.ttf", weight: "500", style: "normal" },
+    { path: "../../font_name/futura-pt/FuturaCyrillicDemi.ttf", weight: "600", style: "normal" },
+    { path: "../../font_name/futura-pt/FuturaCyrillicBold.ttf", weight: "700", style: "normal" },
+    { path: "../../font_name/futura-pt/FuturaCyrillicHeavy.ttf", weight: "800", style: "normal" },
+    { path: "../../font_name/futura-pt/FuturaCyrillicExtraBold.ttf", weight: "900", style: "normal" },
+  ],
   variable: "--font-futura",
   display: "swap",
 });
 
 export const fontVariables = [
-  inter.variable,
-  fraunces.variable,
-  allura.variable,
+  themysion.variable,
   pinyon.variable,
-  charm.variable,
+  awSiamEnglish.variable,
+  futura.variable,
+  fraunces.variable,
   notoSansThai.variable,
-  jost.variable,
 ].join(" ");

@@ -4,6 +4,7 @@ import { DisplaySerif } from "@/components/display";
 import { MusicStaffScript } from "@/components/music-staff-script";
 import { AirmailStripe } from "@/components/airmail-stripe";
 import { VideoBg } from "@/components/video-bg";
+import { AnimateIn } from "@/components/animate-in";
 
 export const metadata: Metadata = {
   title: "About — G.Sam Art Gallery",
@@ -28,7 +29,7 @@ export default function AboutPage() {
           <div className="flex items-start justify-between gap-6">
             <span
               className="font-script-hero text-paper leading-none"
-              style={{ fontSize: "clamp(4.5rem, 13vw, 17rem)", textShadow: "rgba(0,0,0,0.3) 2px 2px 4px" }}
+              style={{ fontSize: "clamp(4.5rem, 13vw, 17rem)", textShadow: "rgba(0,0,0,0.3) 2px 2px 4px", paddingTop:"5rem" }}
             >
               G.Sam
             </span>
@@ -79,6 +80,7 @@ export default function AboutPage() {
       </section>
 
       {/* INTRO — same paragraph as on the Home page in Canva */}
+      <AnimateIn>
       <section className="mx-auto max-w-300 px-6 md:px-10 pt-16 md:pt-24 grid gap-12 md:grid-cols-[1.4fr_1fr] items-center">
         <div>
           <p className="text-3xl md:text-5xl leading-tight text-ink">
@@ -105,12 +107,14 @@ export default function AboutPage() {
             <source src="/videos/why-circle.mp4" type="video/mp4" />
           </video>
           <span className="absolute inset-0 flex items-center justify-center">
-            <MusicStaffScript size="xl" className="text-paper drop-shadow">Why?</MusicStaffScript>
+            <span className="font-futura font-bold text-paper drop-shadow-lg text-6xl md:text-8xl leading-none">Why?</span>
           </span>
         </div>
       </section>
+      </AnimateIn>
 
       {/* MEGA WHY? — stacked so descender of "y" never touches the script line */}
+      <AnimateIn>
       <section className="mx-auto max-w-341.5 px-6 md:px-10 py-20 md:py-32">
         <div className="flex flex-col">
           <DisplaySerif as="h1" className="text-[clamp(8rem,22vw,22rem)] leading-none">
@@ -123,8 +127,10 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      </AnimateIn>
 
       {/* VISION + MISSION — two columns */}
+      <AnimateIn>
       <section className="mx-auto max-w-300 px-6 md:px-10 pb-24 grid gap-12 md:gap-16 md:grid-cols-2">
         <article>
           <DisplaySerif as="h2" className="text-6xl md:text-7xl">Our Vision</DisplaySerif>
@@ -144,6 +150,7 @@ export default function AboutPage() {
           </p>
         </article>
       </section>
+      </AnimateIn>
 
       <AirmailStripe />
     </>
