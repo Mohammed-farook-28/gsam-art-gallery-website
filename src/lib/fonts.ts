@@ -1,4 +1,4 @@
-import { Fraunces, Noto_Sans_Thai, Pinyon_Script } from "next/font/google";
+import { Fraunces, Noto_Sans_Thai } from "next/font/google";
 import localFont from "next/font/local";
 
 export const fraunces = Fraunces({
@@ -20,9 +20,8 @@ export const themysion = localFont({
   display: "swap",
 });
 
-export const pinyon = Pinyon_Script({
-  subsets: ["latin"],
-  weight: "400",
+export const marelle = localFont({
+  src: "../../font_name/marielle-font/MarelleLIGNES2-Regular.otf",
   variable: "--font-script",
   display: "swap",
 });
@@ -48,7 +47,7 @@ export const futura = localFont({
 
 export const fontVariables = [
   themysion.variable,
-  pinyon.variable,
+  marelle.variable,
   awSiamEnglish.variable,
   futura.variable,
   fraunces.variable,
