@@ -34,7 +34,7 @@ export default async function StorePage({ searchParams }: { searchParams: Search
           <DisplaySans as="h1" className="text-[clamp(2.5rem,8vw,6.5rem)] leading-none">
             Store
           </DisplaySans>
-          <div className="max-w-sm flex flex-col items-end -space-y-2">
+          <div className="max-w-xl flex flex-col items-end space-y-3 md:space-y-4">
             <MusicStaffScript size="sm" className="text-ink/80">
               Experience the joy of writing a letter
             </MusicStaffScript>
@@ -61,7 +61,7 @@ export default async function StorePage({ searchParams }: { searchParams: Search
             <div className="absolute right-8 md:right-14 inset-y-0 flex flex-col justify-center text-right z-10">
               <p className="leading-tight">
                 <span
-                  className="block font-script text-paper"
+                  className="block font-script-hero text-paper"
                   style={{ fontSize: "clamp(1.4rem,3vw,3rem)" }}
                 >
                   Every art has
@@ -163,8 +163,9 @@ export default async function StorePage({ searchParams }: { searchParams: Search
       <section className="mx-auto max-w-341.5 px-6 md:px-10 py-16 md:py-24">
         <div className="flex flex-wrap items-end gap-x-6 gap-y-3">
           <DisplaySans as="h2" className="text-[clamp(3rem,10vw,8rem)]">Spotlight</DisplaySans>
-          <span className="pb-4">
-            <MusicStaffScript size="md">Experience the joy of writing a letter for your loved one,</MusicStaffScript>
+          <span className="pb-4 flex flex-col items-center gap-2">
+            <MusicStaffScript size="md">Experience the joy of writing a letter</MusicStaffScript>
+            <MusicStaffScript size="md">for your loved one,</MusicStaffScript>
           </span>
         </div>
         <div className="mt-10 relative w-full">
@@ -200,7 +201,7 @@ export default async function StorePage({ searchParams }: { searchParams: Search
           />
         </div>
         <div>
-          <p className="font-script text-2xl md:text-3xl text-ink/80">People&apos;s</p>
+          <MusicStaffScript size="sm" className="text-ink/80">People&apos;s</MusicStaffScript>
           <DisplaySans as="h2" className="text-[clamp(3rem,10vw,8rem)] -mt-1">Store</DisplaySans>
           <p className="mt-6 max-w-prose text-base md:text-lg leading-relaxed text-ink/85">
             We share <strong className="font-semibold">their stories to you.</strong> We share{" "}
@@ -222,9 +223,11 @@ export default async function StorePage({ searchParams }: { searchParams: Search
       <AnimateIn>
       <section className="mx-auto max-w-300 px-6 md:px-10 py-20 md:py-28 grid gap-12 md:grid-cols-[1.4fr_1fr] items-center">
         <div>
-          <p className="font-script text-2xl md:text-3xl text-ink/80">
-            send us your message, we will write and
-          </p>
+          <div className="text-ink/80">
+            <MusicStaffScript size="sm">
+              send us your message, we will write and
+            </MusicStaffScript>
+          </div>
           <DisplaySans as="h2" className="text-[clamp(3rem,11vw,9rem)] -mt-1">we post it for you.</DisplaySans>
           <Link
             href="/letters"
