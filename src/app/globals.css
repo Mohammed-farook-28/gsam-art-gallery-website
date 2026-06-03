@@ -17,12 +17,18 @@
   --font-script-hero: var(--font-script-hero), cursive;
   --font-script-plain: var(--font-script-plain), cursive;
   --font-thai: var(--font-thai), sans-serif;
+  --font-thai-display: var(--font-thai-display), serif;
   --font-futura: var(--font-futura), "Futura", "Century Gothic", sans-serif;
 }
 
 /* Plain Marelle font (no guide lines) */
 .font-script-plain {
   font-family: var(--font-script-plain), cursive;
+}
+
+/* AW Siam display font */
+.font-thai-display {
+  font-family: var(--font-thai-display), serif;
 }
 
 :root {

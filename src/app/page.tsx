@@ -34,6 +34,7 @@ const TEASERS = [
     title: "Thailand",
     tagline: "City · Village · Mountain.",
     image: "/canva-extracts/Screenshot 2026-05-20 085033.png",
+    titleClassName: "font-thai-display text-4xl",
   },
 ];
 
