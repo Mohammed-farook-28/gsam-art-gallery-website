@@ -17,7 +17,7 @@ export function SiteFooter() {
         </div>
 
         <nav className="flex flex-col gap-3 uppercase tracking-[0.18em] text-xs text-paper/80">
-          <Link href="/about" className="hover:text-paper">About</Link>
+          <Link href="/#about" className="hover:text-paper">About</Link>
           <Link href="/travel" className="hover:text-paper">Travel</Link>
           <Link href="/store" className="hover:text-paper">Store</Link>
           <Link href="/people" className="hover:text-paper">People</Link>
