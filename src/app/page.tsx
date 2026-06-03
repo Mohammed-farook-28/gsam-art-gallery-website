@@ -2,8 +2,39 @@ import Image from "next/image";
 import Link from "next/link";
 import { MusicStaffScript } from "@/components/music-staff-script";
 import { AirmailStripe } from "@/components/airmail-stripe";
-import { cn } from "@/lib/cn";
-import { AnimateIn, StaggerIn, StaggerItem } from "@/components/animate-in";
+import { AnimateIn } from "@/components/animate-in";
+import { TeaserGrid } from "@/components/teaser-grid";
+
+const TEASERS = [
+  {
+    href: "/store",
+    kicker: "Store",
+    title: "Postcards",
+    tagline: "Every art has a story.",
+    image: "/canva-extracts/teaser-postcards.png",
+  },
+  {
+    href: "/letters",
+    kicker: "A service",
+    title: "We post it for you",
+    tagline: "Send your message; we will write & post it.",
+    image: "/canva-extracts/teaser-letters.png",
+  },
+  {
+    href: "/people",
+    kicker: "People",
+    title: "People's Store",
+    tagline: "We share their stories. We share Our profits.",
+    image: "/canva-extracts/teaser-people.png",
+  },
+  {
+    href: "/travel",
+    kicker: "Travel + Art",
+    title: "Thailand",
+    tagline: "City · Village · Mountain.",
+    image: "/canva-extracts/Screenshot 2026-05-20 085033.png",
+  },
+];
 
 export default function HomePage() {
   return (
@@ -138,9 +169,9 @@ export default function HomePage() {
             >
               <source src="/videos/why-circle.mp4" type="video/mp4" />
             </video>
-          <span className="absolute inset-0 flex items-center justify-center">
-            <span className="font-futura font-bold text-paper drop-shadow-lg text-6xl md:text-8xl leading-none">Why?</span>
-          </span>
+            <span className="absolute inset-0 flex items-center justify-center">
+              <span className="font-futura font-bold text-paper drop-shadow-lg text-6xl md:text-8xl leading-none">Why?</span>
+            </span>
           </div>
         </section>
       </AnimateIn>
@@ -149,38 +180,8 @@ export default function HomePage() {
       <AnimateIn>
         <section className="mx-auto max-w-341.5 px-6 md:px-10 py-12 md:py-20">
           <h2 className="sr-only">Browse the gallery</h2>
-          <ul className="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-4">
-            <Teaser
-            href="/store"
-            kicker="Store"
-            title="Postcards"
-            tagline="Every art has a story."
-            image="/canva-extracts/store-stream-postcards.jpg"
-          />
-          <Teaser
-            href="/people"
-            kicker="People"
-            title="People's Store"
-            tagline="We share their stories. We share Our profits."
-            image="/canva-extracts/krishnamoorthy-portrait.jpg"
-          />
-          <Teaser
-            href="/travel"
-            kicker="Travel + Art"
-            title="Thailand"
-            tagline="City · Village · Mountain."
-            image="/canva-extracts/travel-mountains-hero.jpg"
-            titleClassName="font-thai-display"
-          />
-          <Teaser
-            href="/letters"
-            kicker="A service"
-            title="We post it for you"
-            tagline="Send your message; we will write & post it."
-            image="/canva-extracts/post-postcard-sun.jpg"
-          />
-        </ul>
-      </section>
+          <TeaserGrid items={TEASERS} />
+        </section>
       </AnimateIn>
 
       {/* CATEGORY STRIP — black bar mirroring the design */}
@@ -209,40 +210,5 @@ export default function HomePage() {
         </section>
       </AnimateIn>
     </>
-  );
-}
-
-function Teaser({
-  href,
-  kicker,
-  title,
-  tagline,
-  image,
-  titleClassName,
-}: {
-  href: string;
-  kicker: string;
-  title: string;
-  tagline: string;
-  image: string;
-  titleClassName?: string;
-}) {
-  return (
-    <li>
-      <Link href={href} className="group block">
-        <div className="relative aspect-4/5 overflow-hidden bg-cream">
-          <Image
-            src={image}
-            alt=""
-            fill
-            sizes="(min-width: 1024px) 22vw, (min-width: 768px) 45vw, 100vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-          />
-        </div>
-        <p className="mt-4 text-[0.7rem] uppercase tracking-[0.22em] text-muted">{kicker}</p>
-        <p className={cn("mt-1 font-sans font-black text-3xl leading-tight", titleClassName)}>{title}</p>
-        <p className="mt-1 font-script text-xl leading-tight text-ink/70">{tagline}</p>
-      </Link>
-    </li>
   );
 }
