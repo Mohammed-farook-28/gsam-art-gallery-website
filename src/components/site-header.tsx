@@ -8,7 +8,7 @@ import { cn } from "@/lib/cn";
 import { CartIcon } from "@/components/cart-icon";
 
 const NAV_ITEMS = [
-  { href: "/about", label: "About" },
+  { href: "/#about", label: "About" },
   { href: "/travel", label: "Travel" },
   { href: "/store", label: "Store" },
   { href: "/people", label: "People" },
@@ -21,7 +21,7 @@ const NAV_ITEMS = [
 // top of these pages, the header rides over the photo with light text and a
 // faint scrim. After scrolling past the hero, it switches to the standard
 // solid white treatment.
-const DARK_HERO_ROUTES = new Set(["/", "/about", "/travel"]);
+const DARK_HERO_ROUTES = new Set(["/", "/travel"]);
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -135,3 +135,4 @@ export function SiteHeader() {
       </motion.header>
   );
 }
+
