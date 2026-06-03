@@ -84,9 +84,9 @@ export default async function ProductPage({ params }: { params: Params }) {
 
           {/* PRODUCT INFO + PURCHASE */}
           <div>
-            <h1 className="font-script text-5xl md:text-6xl leading-tight text-ink">
+            <MusicStaffScript size="lg" className="text-ink leading-tight">
               {product.title}
-            </h1>
+            </MusicStaffScript>
             <div className="mt-2 h-3 music-staff opacity-60" aria-hidden="true" />
             <div className="mt-8 flex items-baseline gap-3">
               <p className="font-sans font-bold uppercase tracking-[0.18em] text-base">

@@ -28,7 +28,9 @@ export default function CartPage() {
           <p className="mt-12 text-muted">Loading…</p>
         ) : cart.length === 0 ? (
           <div className="mt-16 border-t border-rule pt-16 text-center">
-            <p className="font-script text-3xl md:text-4xl text-ink/85">Your cart is empty.</p>
+            <p className="font-script text-3xl md:text-4xl text-ink/85">
+              Your cart is empty.
+            </p>
             <Link
               href="/store"
               className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-[0.22em] font-semibold border border-ink px-8 py-4 hover:bg-ink hover:text-paper transition-colors"

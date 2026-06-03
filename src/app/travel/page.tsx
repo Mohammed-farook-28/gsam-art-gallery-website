@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { DisplaySans } from "@/components/display";
+import { MusicStaffScript } from "@/components/music-staff-script";
 import { AirmailStripe } from "@/components/airmail-stripe";
 import { RetreatSignupForm } from "./retreat-signup-form";
 import { VideoBg } from "@/components/video-bg";
@@ -180,9 +181,11 @@ export default function TravelPage() {
         <DisplaySans as="h2" className="text-5xl md:text-6xl">
           Reserve a seat.
         </DisplaySans>
-        <p className="mt-3 font-script text-2xl md:text-3xl text-ink/80">
-          Tell us a little about you and we&apos;ll be in touch.
-        </p>
+        <div className="mt-3 text-ink/80">
+          <MusicStaffScript size="sm">
+            Tell us a little about you and we&apos;ll be in touch.
+          </MusicStaffScript>
+        </div>
         <div className="mt-10">
           <RetreatSignupForm />
         </div>

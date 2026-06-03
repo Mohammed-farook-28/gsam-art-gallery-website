@@ -50,16 +50,20 @@ export default function PeoplePage() {
             className="w-full h-auto"
           />
         </div>
-        <p className="mt-4 text-right text-xl md:text-2xl font-script text-ink/70">
-          what&apos;s your story?
-        </p>
+        <div className="mt-4 flex justify-end">
+          <MusicStaffScript size="sm" className="text-ink/70">
+            what&apos;s your story?
+          </MusicStaffScript>
+        </div>
       </section>
       </AnimateIn>
 
       {/* TELL THE WORLD → POSTCARDS */}
       <AnimateIn>
       <section className="mx-auto max-w-341.5 px-6 md:px-10 py-20 md:py-28">
-        <p className="text-2xl md:text-3xl font-script text-ink/80">tell the world…</p>
+        <p className="text-2xl md:text-3xl text-ink/80">
+          <MusicStaffScript size="sm">tell the world…</MusicStaffScript>
+        </p>
         <div className="mt-2 flex flex-wrap items-end gap-x-6 gap-y-3">
           <DisplaySans className="text-[clamp(3.5rem,11vw,9.5rem)]">your story</DisplaySans>
           <span className="pb-4">
@@ -106,7 +110,7 @@ export default function PeoplePage() {
       {/* PEOPLE'S STORE STORIES */}
       <AnimateIn>
       <section className="mx-auto max-w-300 px-6 md:px-10 pb-24">
-        <p className="font-script text-2xl md:text-3xl text-ink/80">People&apos;s</p>
+        <MusicStaffScript size="sm" className="text-ink/80">People&apos;s</MusicStaffScript>
         <DisplaySans as="h2" className="text-[clamp(2.5rem,8vw,7rem)] -mt-1">
           Store
         </DisplaySans>
@@ -126,9 +130,11 @@ export default function PeoplePage() {
                 <p className="font-serif text-sm uppercase tracking-[0.18em] text-muted">
                   {s.name}
                 </p>
-                <p className="mt-3 font-script text-2xl md:text-3xl text-ink/85 leading-snug">
-                  {s.quote}
-                </p>
+                <div className="mt-3">
+                  <MusicStaffScript size="sm" className="text-ink/85">
+                    {s.quote}
+                  </MusicStaffScript>
+                </div>
                 <p
                   className="mt-4 text-base leading-relaxed text-ink/85"
                   dangerouslySetInnerHTML={{ __html: s.body }}

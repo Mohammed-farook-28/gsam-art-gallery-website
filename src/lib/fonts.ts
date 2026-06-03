@@ -26,6 +26,12 @@ export const marelle = localFont({
   display: "swap",
 });
 
+export const marellePlain = localFont({
+  src: "../../font_name/marielle-font/Marelle-Regular.otf",
+  variable: "--font-script-plain",
+  display: "swap",
+});
+
 export const awSiamEnglish = localFont({
   src: "../../font_name/aw-siam-english-not-thai/AW_Siam.ttf",
   variable: "--font-thai-display",
@@ -48,6 +54,7 @@ export const futura = localFont({
 export const fontVariables = [
   themysion.variable,
   marelle.variable,
+  marellePlain.variable,
   awSiamEnglish.variable,
   futura.variable,
   fraunces.variable,

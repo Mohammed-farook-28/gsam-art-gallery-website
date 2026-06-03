@@ -24,21 +24,12 @@ export function MusicStaffScript({
   return (
     <span
       className={cn(
-        "relative inline-block font-script italic leading-[1.05] text-ink",
+        "relative inline-block font-script italic leading-[1.05] text-ink whitespace-nowrap",
         sizeMap[size],
         className,
       )}
     >
       <span className="relative z-10">{children}</span>
-      <span
-        aria-hidden
-        className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-[60%] pointer-events-none"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(to bottom, transparent 0, transparent calc(20% - 0.5px), currentColor calc(20% - 0.5px), currentColor 20%)",
-          opacity: 0.55,
-        }}
-      />
     </span>
   );
 }

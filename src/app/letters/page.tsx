@@ -19,9 +19,11 @@ export default function LettersPage() {
 
       {/* HEADLINE */}
       <section className="mx-auto max-w-341.5 px-6 md:px-10 pt-12 md:pt-20">
-        <p className="font-script text-2xl md:text-3xl text-ink/80">
-          send us your message, we will write and
-        </p>
+        <div className="text-ink/80">
+          <MusicStaffScript size="sm">
+            send us your message, we will write and
+          </MusicStaffScript>
+        </div>
         <DisplaySans as="h1" className="text-[clamp(3rem,12vw,11rem)] -mt-2">
           we post it for you.
         </DisplaySans>
@@ -33,9 +35,10 @@ export default function LettersPage() {
       <AnimateIn>
       <section className="mx-auto max-w-300 px-6 md:px-10 py-16 md:py-24 grid gap-12 md:grid-cols-[1fr_1fr] items-center">
         <div className="max-w-prose text-base md:text-lg leading-relaxed text-ink/85">
-          <p className="font-script text-2xl md:text-3xl text-ink/80">
-            Experience the joy of writing a letter for your loved one,
-          </p>
+          <div className="flex flex-col items-center gap-2">
+            <MusicStaffScript size="sm">Experience the joy of writing a letter</MusicStaffScript>
+            <MusicStaffScript size="sm">for your loved one,</MusicStaffScript>
+          </div>
           <p className="mt-6">
             Writing a letter, posting it and waiting for the person to receive it. We are
             building <strong className="font-semibold">a bridge for a meaningful conversation.</strong>{" "}
@@ -86,9 +89,11 @@ export default function LettersPage() {
         <DisplaySans as="h2" className="text-5xl md:text-6xl">
           Write your letter.
         </DisplaySans>
-        <p className="mt-3 font-script text-2xl md:text-3xl text-ink/80">
-          We&apos;ll handle the postcard, the stamp, and the mailbox.
-        </p>
+        <div className="mt-3 text-ink/80">
+          <MusicStaffScript size="sm">
+            We&apos;ll handle the postcard, the stamp, and the mailbox.
+          </MusicStaffScript>
+        </div>
         <div className="mt-12">
           <LetterForm />
         </div>

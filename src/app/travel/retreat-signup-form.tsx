@@ -3,15 +3,16 @@
 import { useActionState } from "react";
 import { Field, TextInput, TextArea, SubmitButton } from "@/components/form-fields";
 import { submitRetreat, initialFormState } from "@/app/actions/submissions";
+import { MusicStaffScript } from "@/components/music-staff-script";
 
 export function RetreatSignupForm() {
   const [state, formAction] = useActionState(submitRetreat, initialFormState);
 
   if (state.ok) {
     return (
-      <p className="font-script text-3xl md:text-4xl text-ink leading-tight">
+      <MusicStaffScript size="sm" className="text-ink">
         สวัสดีครับ — we&apos;ll be in touch with retreat details.
-      </p>
+      </MusicStaffScript>
     );
   }
 
