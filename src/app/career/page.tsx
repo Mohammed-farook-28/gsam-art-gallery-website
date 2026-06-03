@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { DisplaySans } from "@/components/display";
 import { MusicStaffScript } from "@/components/music-staff-script";
 import { CareerForm } from "./career-form";
-import { VideoBg } from "@/components/video-bg";
 import { AnimateIn } from "@/components/animate-in";
 
 export const metadata: Metadata = {
@@ -27,41 +26,15 @@ export default function CareerPage() {
       </section>
 
       <AnimateIn>
-      <section className="mx-auto max-w-300 px-6 md:px-10 py-16 md:py-24 grid gap-16 md:grid-cols-[1fr_1.2fr] items-center">
-        {/* Circular video — ocean / fish loop matching the G.Sam mandala motif */}
-        <div className="relative aspect-square w-full max-w-md mx-auto overflow-hidden rounded-full bg-mandala">
-          <VideoBg
-            src="/videos/career-ocean.mp4"
-            className="absolute inset-0 w-full h-full object-cover"
-            overlay
-            overlayOpacity={0.15}
-          />
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <span className="font-script-hero text-white text-4xl md:text-5xl drop-shadow-xl">
-              G.Sam
-            </span>
-          </div>
-        </div>
-        <div>
-          <p className="text-lg md:text-xl leading-relaxed text-ink/90">
+        <section className="mx-auto max-w-341.5 px-6 md:px-10 py-16 md:py-24">
+          <p className="text-lg md:text-xl leading-relaxed text-ink/90 max-w-2xl">
             <strong className="font-semibold">Requirement: being human.</strong> We are curious
             to know why you chose us, your dreams and goals.
           </p>
-          <p className="mt-4 text-sm text-muted">
-            Or write to us at{" "}
-            <a
-              href="mailto:g.s.a.m.art.gallery25@gmail.com"
-              className="underline underline-offset-4 hover:opacity-70"
-            >
-              g.s.a.m.art.gallery25@gmail.com
-            </a>
-            .
-          </p>
-          <div className="mt-10">
+          <div className="mt-10 max-w-2xl">
             <CareerForm />
           </div>
-        </div>
-      </section>
+        </section>
       </AnimateIn>
     </>
   );

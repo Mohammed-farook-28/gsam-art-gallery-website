@@ -25,7 +25,7 @@ export function CareerForm() {
           <TextInput id="career-email" name="email" type="email" required autoComplete="email" />
         </Field>
       </div>
-      <Field label="Why us?" htmlFor="career-why">
+      <Field label="Tell the story of your life in 3 lines?" htmlFor="career-why">
         <TextArea id="career-why" name="why_us" required rows={4} />
       </Field>
       <Field label="Your dreams & goals" htmlFor="career-dreams">

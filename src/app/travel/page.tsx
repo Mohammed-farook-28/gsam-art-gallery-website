@@ -6,6 +6,7 @@ import { AirmailStripe } from "@/components/airmail-stripe";
 import { RetreatSignupForm } from "./retreat-signup-form";
 import { VideoBg } from "@/components/video-bg";
 import { AnimateIn } from "@/components/animate-in";
+import { awSiamEnglish } from "@/lib/fonts";
 
 export const metadata: Metadata = {
   title: "Travel + Art Experience — G.Sam Art Gallery",
@@ -96,7 +97,7 @@ export default function TravelPage() {
           {/* "Thailand" in Charm (AW-Siam-style English) — left */}
           <div className="absolute inset-y-0 left-0 flex flex-col justify-end p-6 md:p-10">
             <p
-              className="font-thai-display text-white leading-none drop-shadow-lg"
+              className={`${awSiamEnglish.className} text-white leading-none drop-shadow-lg`}
               style={{ fontSize: "clamp(3.5rem, 9vw, 8rem)" }}
             >
               Thailand

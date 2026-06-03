@@ -99,6 +99,22 @@ export async function submitCareer(_: FormState, formData: FormData): Promise<Fo
   return insert("career_applications", parsed.data);
 }
 
+// ---------- VOLUNTEERING ----------
+const volunteerSchema = z.object({
+  name: z.string().min(1),
+  email: z.string().email(),
+  why_us: z.string().min(1, "Tell us why you'd like to volunteer."),
+  skills: z.string().min(1, "Share your skills and interests."),
+});
+
+export async function submitVolunteer(_: FormState, formData: FormData): Promise<FormState> {
+  const parsed = volunteerSchema.safeParse(Object.fromEntries(formData));
+  if (!parsed.success) {
+    return { ok: false, message: "Please fix the highlighted fields.", errors: parsed.error.flatten().fieldErrors };
+  }
+  return insert("volunteer_applications", parsed.data);
+}
+
 // Orders are now created via the cart → /checkout flow.
 // See `app/actions/checkout.ts` for createPaymentSession +
 // verifyAndCompletePayment, which handle the multi-item order + Razorpay flow.

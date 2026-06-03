@@ -11,7 +11,7 @@ export function SiteFooter() {
           <p className="mt-2 uppercase tracking-[0.18em] text-xs text-paper/70">
             Art Gallery
           </p>
-          <p className="mt-6 font-script text-2xl leading-tight text-paper/90">
+          <p className="mt-6 font-script text-2xl leading-tight text-paper/90 whitespace-nowrap">
             for a million dreams to stay alive.
           </p>
         </div>
@@ -21,18 +21,20 @@ export function SiteFooter() {
           <Link href="/travel" className="hover:text-paper">Travel</Link>
           <Link href="/store" className="hover:text-paper">Store</Link>
           <Link href="/people" className="hover:text-paper">People</Link>
-          <Link href="/letters" className="hover:text-paper">Send a letter</Link>
-          <Link href="/career" className="hover:text-paper">Career</Link>
-          <Link href="/contact" className="hover:text-paper">Get in touch</Link>
+          <Link href="/letters" className="hover:text-paper">Letters</Link>
+          <p className="mt-2 text-paper/40 tracking-widest text-[0.6rem]">Get in Touch</p>
+          <Link href="/contact" className="hover:text-paper pl-2">Talk to Us</Link>
+          <Link href="/career" className="hover:text-paper pl-2">Career</Link>
+          <Link href="/volunteering" className="hover:text-paper pl-2">Volunteering</Link>
         </nav>
 
         <div className="text-sm text-paper/80">
           <p className="uppercase tracking-[0.18em] text-xs text-paper/60">Write to us</p>
           <a
-            href="mailto:g.s.a.m.art.gallery25@gmail.com"
+            href="mailto:people@gsamartgallery.com"
             className="mt-2 block underline-offset-4 hover:underline"
           >
-            g.s.a.m.art.gallery25@gmail.com
+            people@gsamartgallery.com
           </a>
           <p className="mt-8 text-xs text-paper/50">
             © {new Date().getFullYear()} G.Sam Art Gallery. Every art has a story.
