@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { DisplaySans } from "@/components/display";
 import { MusicStaffScript } from "@/components/music-staff-script";
 import { AirmailStripe } from "@/components/airmail-stripe";
-import { LetterForm } from "./letter-form";
+import { LetterSection } from "./letter-section";
 import { AnimateIn } from "@/components/animate-in";
 
 export const metadata: Metadata = {
@@ -33,7 +32,7 @@ export default function LettersPage() {
 
       {/* WHY THIS EXISTS + SAMPLE POSTCARD */}
       <AnimateIn>
-      <section className="mx-auto max-w-300 px-6 md:px-10 py-16 md:py-24 grid gap-12 md:grid-cols-[1fr_1fr] items-center">
+      <section className="mx-auto max-w-300 px-6 md:px-10 py-16 md:py-24">
         <div className="max-w-prose text-base md:text-lg leading-relaxed text-ink/85">
           <div className="flex flex-col items-center gap-2">
             <MusicStaffScript size="sm">Experience the joy of writing a letter</MusicStaffScript>
@@ -51,26 +50,16 @@ export default function LettersPage() {
             arts done with patience have been translated into postcards for you.
           </p>
         </div>
-        <div className="w-full">
-          <Image
-            src="/canva-extracts/postcard-set-01.jpg"
-            alt="Postcard set design"
-            width={0}
-            height={0}
-            sizes="(min-width: 768px) 50vw, 100vw"
-            className="w-full h-auto"
-          />
-        </div>
       </section>
       </AnimateIn>
 
       {/* SAMPLE LETTER */}
       <AnimateIn>
-      <section className="mx-auto max-w-200 px-6 md:px-10 py-16">
-        <p className="font-serif text-sm uppercase tracking-[0.18em] text-muted">
+      <section className="max-w-200 ml-auto pr-[50px] pl-6 md:pl-10 py-16">
+        <p className="font-serif text-sm uppercase tracking-[0.18em] text-muted text-left">
           A letter we recently posted
         </p>
-        <blockquote className="mt-6 border-l-2 border-airmail-red pl-6 text-base md:text-lg leading-relaxed text-ink/90 font-serif italic">
+        <blockquote className="mt-6 text-base md:text-lg leading-relaxed text-ink/90 font-serif italic text-left">
           <p className="not-italic font-sans font-semibold">Zenitsu —</p>
           <p className="mt-3">
             Dearest son, Live the fullest, think everyone is you. Remember trust is like an
@@ -81,23 +70,9 @@ export default function LettersPage() {
       </section>
       </AnimateIn>
 
-      <AirmailStripe />
-
       {/* THE FORM */}
       <AnimateIn>
-      <section className="mx-auto max-w-225 px-6 md:px-10 py-20 md:py-28">
-        <DisplaySans as="h2" className="text-5xl md:text-6xl">
-          Write your letter.
-        </DisplaySans>
-        <div className="mt-3 text-ink/80">
-          <MusicStaffScript size="sm">
-            We&apos;ll handle the postcard, the stamp, and the mailbox.
-          </MusicStaffScript>
-        </div>
-        <div className="mt-12">
-          <LetterForm />
-        </div>
-      </section>
+        <LetterSection />
       </AnimateIn>
     </>
   );

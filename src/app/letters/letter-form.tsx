@@ -11,7 +11,7 @@ const POSTCARDS = [
   { value: "we-pick", label: "Surprise me — you pick" },
 ];
 
-export function LetterForm() {
+export function LetterForm({ onSenderNameChange }: { onSenderNameChange?: (name: string) => void }) {
   const [state, formAction] = useActionState(submitLetter, initialFormState);
 
   if (state.ok) {
@@ -24,13 +24,33 @@ export function LetterForm() {
 
   return (
     <form action={formAction} className="space-y-10">
+      <Field label="Choose a postcard" htmlFor="letter-postcard" hint={state.errors?.postcard_choice?.[0]}>
+        <select
+          id="letter-postcard"
+          name="postcard_choice"
+          required
+          defaultValue={POSTCARDS[0].value}
+          className="w-full bg-transparent border-b border-rule focus:border-ink py-3 px-0 text-base focus:outline-none"
+        >
+          {POSTCARDS.map((p) => (
+            <option key={p.value} value={p.value}>{p.label}</option>
+          ))}
+        </select>
+      </Field>
+
       <fieldset className="space-y-8">
         <legend className="text-[0.7rem] uppercase tracking-[0.22em] text-muted font-semibold">
           From
         </legend>
         <div className="grid gap-8 md:grid-cols-2">
           <Field label="Your name" htmlFor="letter-sender-name" hint={state.errors?.sender_name?.[0]}>
-            <TextInput id="letter-sender-name" name="sender_name" required autoComplete="name" />
+            <TextInput
+              id="letter-sender-name"
+              name="sender_name"
+              required
+              autoComplete="name"
+              onChange={onSenderNameChange ? (e) => onSenderNameChange(e.target.value) : undefined}
+            />
           </Field>
           <Field label="Your email" htmlFor="letter-sender-email" hint={state.errors?.sender_email?.[0]}>
             <TextInput id="letter-sender-email" name="sender_email" type="email" required autoComplete="email" />
@@ -49,20 +69,6 @@ export function LetterForm() {
           <TextArea id="letter-recipient-address" name="recipient_address" required rows={4} />
         </Field>
       </fieldset>
-
-      <Field label="Choose a postcard" htmlFor="letter-postcard" hint={state.errors?.postcard_choice?.[0]}>
-        <select
-          id="letter-postcard"
-          name="postcard_choice"
-          required
-          defaultValue={POSTCARDS[0].value}
-          className="w-full bg-transparent border-b border-rule focus:border-ink py-3 px-0 text-base focus:outline-none"
-        >
-          {POSTCARDS.map((p) => (
-            <option key={p.value} value={p.value}>{p.label}</option>
-          ))}
-        </select>
-      </Field>
 
       <Field label="Your message" htmlFor="letter-message" hint={state.errors?.message?.[0] ?? "We'll hand-write it onto the postcard."}>
         <TextArea id="letter-message" name="message" required rows={8} />
