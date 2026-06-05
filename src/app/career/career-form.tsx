@@ -29,7 +29,7 @@ export function CareerForm({ onFieldFocus, onSubmitted }: CareerFormProps = {}) 
       action={formAction}
       className="space-y-8"
       onFocus={(e) => {
-        const name = (e.target as HTMLInputElement).name;
+        const name = (e.target as unknown as HTMLInputElement).name;
         if (name) onFieldFocus?.(name);
       }}
       onBlur={() => onFieldFocus?.(null)}
