@@ -103,6 +103,10 @@ export async function submitCareer(_: FormState, formData: FormData): Promise<Fo
 const volunteerSchema = z.object({
   name: z.string().min(1),
   email: z.string().email(),
+  age: z.preprocess(
+    (v) => (v === "" || v === undefined || v === null ? undefined : Number(v)),
+    z.number().int().min(13, "Must be at least 13 to volunteer.").max(120).optional(),
+  ),
   why_us: z.string().min(1, "Tell us why you'd like to volunteer."),
   skills: z.string().min(1, "Share your skills and interests."),
 });

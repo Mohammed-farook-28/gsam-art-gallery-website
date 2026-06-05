@@ -1,11 +1,20 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { Field, TextInput, TextArea, SubmitButton } from "@/components/form-fields";
 import { submitCareer, initialFormState } from "@/app/actions/submissions";
 
-export function CareerForm() {
+interface CareerFormProps {
+  onFieldFocus?: (field: string | null) => void;
+  onSubmitted?: () => void;
+}
+
+export function CareerForm({ onFieldFocus, onSubmitted }: CareerFormProps = {}) {
   const [state, formAction] = useActionState(submitCareer, initialFormState);
+
+  useEffect(() => {
+    if (state.ok) onSubmitted?.();
+  }, [state.ok, onSubmitted]);
 
   if (state.ok) {
     return (
@@ -16,7 +25,15 @@ export function CareerForm() {
   }
 
   return (
-    <form action={formAction} className="space-y-8">
+    <form
+      action={formAction}
+      className="space-y-8"
+      onFocus={(e) => {
+        const name = (e.target as HTMLInputElement).name;
+        if (name) onFieldFocus?.(name);
+      }}
+      onBlur={() => onFieldFocus?.(null)}
+    >
       <div className="grid gap-8 md:grid-cols-2">
         <Field label="Your name" htmlFor="career-name">
           <TextInput id="career-name" name="name" required autoComplete="name" />

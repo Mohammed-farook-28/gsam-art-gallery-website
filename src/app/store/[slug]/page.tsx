@@ -84,10 +84,9 @@ export default async function ProductPage({ params }: { params: Params }) {
 
           {/* PRODUCT INFO + PURCHASE */}
           <div>
-            <MusicStaffScript size="lg" className="text-ink leading-tight">
+            <MusicStaffScript size="md" className="text-ink leading-tight">
               {product.title}
             </MusicStaffScript>
-            <div className="mt-2 h-3 music-staff opacity-60" aria-hidden="true" />
             <div className="mt-8 flex items-baseline gap-3">
               <p className="font-sans font-bold uppercase tracking-[0.18em] text-base">
                 Postcard
@@ -114,7 +113,7 @@ export default async function ProductPage({ params }: { params: Params }) {
             <p className="text-xs uppercase tracking-[0.22em] text-muted font-semibold">
               You may also like
             </p>
-            <MusicStaffScript size="md" className="mt-2 text-ink/80">
+            <MusicStaffScript size="sm" className="mt-2 text-ink/80">
               more stories, more art
             </MusicStaffScript>
 

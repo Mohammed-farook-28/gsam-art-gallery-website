@@ -5,6 +5,7 @@ import { AirmailStripe } from "@/components/airmail-stripe";
 import { AnimateIn } from "@/components/animate-in";
 import { TeaserGrid } from "@/components/teaser-grid";
 import { DisplaySerif } from "@/components/display";
+import { TurtleSlideIn } from "@/components/turtle-slide-in";
 
 const TEASERS = [
   {
@@ -191,31 +192,40 @@ export default function HomePage() {
 
 {/* ABOUT MERGED SECTION */}
 <AnimateIn>
-  <section id="about" className="mx-auto max-w-300 px-6 md:px-10 py-16 md:py-24">
+  <section id="about" className="mx-auto max-w-300 px-6 md:px-10 py-16 md:py-24 overflow-x-hidden">
     <DisplaySerif as="h1" className="text-6xl md:text-8xl leading-none">Why?</DisplaySerif>
     <div className="mt-8 md:mt-12">
       <MusicStaffScript size="sm" className="text-ink">
         for a million dreams to stay alive.
       </MusicStaffScript>
     </div>
-    <div className="mt-12 md:mt-16 grid gap-10 md:gap-14 md:grid-cols-2">
-      <article>
-        <DisplaySerif as="h2" className="text-4xl md:text-5xl">Our Vision</DisplaySerif>
-        <p className="mt-5 text-sm md:text-base leading-relaxed text-ink/85">
-          Encouraging people to stay in the present and introducing moments of slow living.
-          We create a set of conversations from peoples hearts to tell the world. A million
-          dreams to stay alive in the form of art. Breathing life into our old ways of
-          <strong className="font-semibold"> writing letters to our loved ones.</strong>
-        </p>
-      </article>
-      <article>
-        <DisplaySerif as="h2" className="text-4xl md:text-5xl">Our Mission</DisplaySerif>
-        <p className="mt-5 text-sm md:text-base leading-relaxed text-ink/85">
-          To empower lives of every human, capture the beauty of life. To be human, to feel
-          deeply, to experience life. To create a way for people to let out their emotions,
-          creating empathy at a global scale.
-        </p>
-      </article>
+
+    <div className="mt-12 md:mt-16 grid gap-10 md:gap-4 md:grid-cols-[1fr_1.6fr] items-start">
+
+      {/* LEFT: Vision + Mission — anchored top-left */}
+      <div className="grid gap-10 md:gap-12 self-start">
+        <article>
+          <DisplaySerif as="h2" className="text-4xl md:text-5xl">Our Vision</DisplaySerif>
+          <p className="mt-5 text-sm md:text-base leading-relaxed text-ink/85">
+            Encouraging people to stay in the present and introducing moments of slow living.
+            We create a set of conversations from peoples hearts to tell the world. A million
+            dreams to stay alive in the form of art. Breathing life into our old ways of
+            <strong className="font-semibold"> writing letters to our loved ones.</strong>
+          </p>
+        </article>
+        <article>
+          <DisplaySerif as="h2" className="text-4xl md:text-5xl">Our Mission</DisplaySerif>
+          <p className="mt-5 text-sm md:text-base leading-relaxed text-ink/85">
+            To empower lives of every human, capture the beauty of life. To be human, to feel
+            deeply, to experience life. To create a way for people to let out their emotions,
+            creating empathy at a global scale.
+          </p>
+        </article>
+      </div>
+
+      {/* RIGHT: turtle slides in from off-screen right on scroll */}
+      <TurtleSlideIn />
+
     </div>
   </section>
 </AnimateIn>

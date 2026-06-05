@@ -36,10 +36,7 @@ export default async function StorePage({ searchParams }: { searchParams: Search
           </DisplaySans>
           <div className="max-w-xl flex flex-col items-end space-y-3 md:space-y-4">
             <MusicStaffScript size="sm" className="text-ink/80">
-              Experience the joy of writing a letter
-            </MusicStaffScript>
-            <MusicStaffScript size="sm" className="text-ink/80">
-              for your loved one,
+              Experience the joy of writing a letter for your loved one
             </MusicStaffScript>
           </div>
         </div>
@@ -134,7 +131,7 @@ export default async function StorePage({ searchParams }: { searchParams: Search
       {/* PRODUCT GRID */}
       <AnimateIn>
       <section className="mx-auto max-w-341.5 px-6 md:px-10 py-12 md:py-16">
-        <ul className="grid gap-10 md:gap-12 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="grid gap-8 md:gap-12 grid-cols-2 lg:grid-cols-3">
           {products.map((p) => (
             <li key={p.slug}>
               <Link href={`/store/${p.slug}`} className="group block">
@@ -147,7 +144,7 @@ export default async function StorePage({ searchParams }: { searchParams: Search
                     className="object-contain transition-transform duration-700 group-hover:scale-[1.03] p-3"
                   />
                 </div>
-                <p className="mt-5 font-script text-2xl md:text-3xl text-ink/85 leading-tight">{p.title}</p>
+                <p className="mt-3 font-script text-lg md:text-2xl text-ink/85 leading-tight whitespace-nowrap">{p.title}</p>
                 <p className="mt-1 font-sans font-semibold text-sm">
                   Postcard · {p.size} · ₹{p.price_inr}
                 </p>
@@ -163,9 +160,8 @@ export default async function StorePage({ searchParams }: { searchParams: Search
       <section className="mx-auto max-w-341.5 px-6 md:px-10 py-16 md:py-24">
         <div className="flex flex-wrap items-end gap-x-6 gap-y-3">
           <DisplaySans as="h2" className="text-[clamp(3rem,10vw,8rem)]">Spotlight</DisplaySans>
-          <span className="pb-4 flex flex-col items-center gap-2">
-            <MusicStaffScript size="md">Experience the joy of writing a letter</MusicStaffScript>
-            <MusicStaffScript size="md">for your loved one,</MusicStaffScript>
+          <span className="pb-4">
+            <MusicStaffScript size="sm">Experience the joy of writing a letter for your loved one</MusicStaffScript>
           </span>
         </div>
         <div className="mt-10 relative w-full">
@@ -190,7 +186,7 @@ export default async function StorePage({ searchParams }: { searchParams: Search
 
       {/* PEOPLE'S STORE TEASER */}
       <AnimateIn>
-      <section className="mx-auto max-w-300 px-6 md:px-10 py-20 md:py-28 grid gap-12 md:grid-cols-[1fr_1.4fr] items-center">
+      <section className="mx-auto max-w-300 px-6 md:px-10 py-16 md:py-28 grid gap-10 md:gap-12 md:grid-cols-[1fr_1.4fr] items-center">
         <div className="relative aspect-3/4 w-full max-w-md">
           <Image
             src="/canva-extracts/Screenshot 2026-05-19 125014.png"
@@ -221,7 +217,7 @@ export default async function StorePage({ searchParams }: { searchParams: Search
 
       {/* SEND A LETTER CTA */}
       <AnimateIn>
-      <section className="mx-auto max-w-300 px-6 md:px-10 py-20 md:py-28 grid gap-12 md:grid-cols-[1.4fr_1fr] items-center">
+      <section className="mx-auto max-w-300 px-6 md:px-10 py-16 md:py-28 grid gap-10 md:gap-12 md:grid-cols-[1.4fr_1fr] items-center">
         <div>
           <div className="text-ink/80">
             <MusicStaffScript size="sm">

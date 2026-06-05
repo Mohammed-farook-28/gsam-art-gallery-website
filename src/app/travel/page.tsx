@@ -104,8 +104,8 @@ export default function TravelPage() {
             </p>
           </div>
 
-          {/* CITY · VILLAGE · MOUNTAIN + description in Futura/Jost — right */}
-          <div className="absolute inset-y-0 right-0 flex flex-col justify-center p-6 md:p-10 max-w-90 text-right">
+          {/* CITY · VILLAGE · MOUNTAIN + description — hidden on small screens */}
+          <div className="hidden sm:flex absolute inset-y-0 right-0 flex-col justify-center p-6 md:p-10 max-w-xs md:max-w-90 text-right">
             <p className="font-futura font-bold text-white text-xs md:text-sm tracking-[0.2em] drop-shadow uppercase">
               CITY · VILLAGE · MOUNTAIN
             </p>
@@ -179,7 +179,7 @@ export default function TravelPage() {
       {/* SIGN-UP FORM */}
       <AnimateIn>
       <section id="sign-up" className="mx-auto max-w-200 px-6 md:px-10 py-20 md:py-28">
-        <DisplaySans as="h2" className="text-5xl md:text-6xl">
+        <DisplaySans as="h2" className="text-4xl md:text-6xl">
           Reserve a seat.
         </DisplaySans>
         <div className="mt-3 text-ink/80">

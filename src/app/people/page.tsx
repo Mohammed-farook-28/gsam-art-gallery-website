@@ -61,9 +61,7 @@ export default function PeoplePage() {
       {/* TELL THE WORLD → POSTCARDS */}
       <AnimateIn>
       <section className="mx-auto max-w-341.5 px-6 md:px-10 py-20 md:py-28">
-        <p className="text-2xl md:text-3xl text-ink/80">
-          <MusicStaffScript size="sm">tell the world…</MusicStaffScript>
-        </p>
+        <MusicStaffScript size="sm" className="text-ink/80">tell the world…</MusicStaffScript>
         <div className="mt-2 flex flex-wrap items-end gap-x-6 gap-y-3">
           <DisplaySans className="text-[clamp(3.5rem,11vw,9.5rem)]">your story</DisplaySans>
           <span className="pb-4">
@@ -79,7 +77,7 @@ export default function PeoplePage() {
       {/* PROFIT-SHARING MESSAGE + POSTCARD MOCKUP */}
       <AnimateIn>
       <section className="mx-auto max-w-341.5 px-6 md:px-10 py-16 md:py-24">
-        <div className="grid gap-12 md:grid-cols-[1fr_2fr] items-center">
+        <div className="grid gap-10 md:gap-12 md:grid-cols-[1fr_2fr] items-center">
           <div className="max-w-prose text-base md:text-lg leading-relaxed text-ink/85">
             <p>
               At Gsam Art Gallery, <strong className="font-semibold">we share our profits</strong>{" "}
@@ -114,7 +112,7 @@ export default function PeoplePage() {
         <DisplaySans as="h2" className="text-[clamp(2.5rem,8vw,7rem)] -mt-1">
           Store
         </DisplaySans>
-        <div className="mt-10 grid gap-12 md:grid-cols-[1fr_1.4fr] items-start">
+        <div className="mt-10 grid gap-10 md:gap-12 md:grid-cols-[1fr_1.4fr] items-start">
           <div className="relative aspect-3/4 w-full max-w-md">
             <Image
               src="/canva-extracts/Screenshot 2026-05-19 125014.png"

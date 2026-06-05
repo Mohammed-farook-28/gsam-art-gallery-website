@@ -16,7 +16,7 @@ export function LetterSection() {
           Write your letter.
         </DisplaySans>
         <div className="mt-3 text-ink/80">
-          <MusicStaffScript size="sm" className="text-lg md:text-xl">
+          <MusicStaffScript size="sm" className="whitespace-normal">
             We&apos;ll handle the postcard, the stamp, and the mailbox.
           </MusicStaffScript>
         </div>

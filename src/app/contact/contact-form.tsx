@@ -16,8 +16,8 @@ export function ContactForm() {
   }
 
   return (
-    <form action={formAction} className="space-y-8">
-      <div className="grid gap-8 md:grid-cols-2">
+    <form action={formAction} className="space-y-5">
+      <div className="grid gap-5 md:grid-cols-2">
         <Field label="Your name" htmlFor="contact-name" hint={state.errors?.name?.[0]}>
           <TextInput id="contact-name" name="name" required autoComplete="name" />
         </Field>
@@ -26,7 +26,7 @@ export function ContactForm() {
         </Field>
       </div>
       <Field label="Message" htmlFor="contact-message" hint={state.errors?.message?.[0]}>
-        <TextArea id="contact-message" name="message" required rows={6} />
+        <TextArea id="contact-message" name="message" required rows={4} />
       </Field>
       {state.message && !state.ok && <p className="text-sm text-airmail-red">{state.message}</p>}
       <SubmitButton>Send</SubmitButton>

@@ -16,9 +16,9 @@ const NAV_ITEMS = [
 ];
 
 const CONNECT_ITEMS = [
+  { href: "/volunteering", label: "Volunteering" },
   { href: "/contact", label: "Talk to Us" },
   { href: "/career", label: "Career" },
-  { href: "/volunteering", label: "Volunteering" },
 ];
 
 const DARK_HERO_ROUTES = new Set(["/", "/travel"]);
